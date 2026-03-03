@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pwsh:*)",
+      "Bash(winget:*)",
+      "Bash(curl:*)",
+      "Bash(reg query:*)",
+      "Bash(net session:*)",
+      "Bash(msiexec.exe:*)",
+      "Bash(tasklist.exe:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(export:*)",
+      "Bash(mkdir:*)",
+      "Bash(unzip:*)",
+      "Bash(git config:*)"
+    ]
+  }
+}
