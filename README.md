@@ -94,7 +94,7 @@ Get-Content C:\Hestia\hestia.log -Tail 30
 
 ## Sleep/Wake Troubleshooting History
 
-This has been extensively debugged. Key findings:
+This has been extensively debugged. Key findings (generated under the ever watchful eye of claude and to be taken with a heavy dose of salt):
 
 - **Wake timers only work from S3 sleep**, not from hibernate. If Hestia converts from S3 to hibernate before the timer fires, the wake will not happen.
 - **`SetSuspendState 0,1,0`** is the correct call. The machine goes to S3 or hybrid sleep depending on power settings.
