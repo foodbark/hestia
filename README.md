@@ -1,6 +1,6 @@
 # Hestia
 
-Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen running Windows 10 LTSC 2021 as a home server / always-on machine.
+Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen running Windows 10 LTSC 2021 as a THE MONIDOOR and always-on-machine.
 
 ## Hardware
 
