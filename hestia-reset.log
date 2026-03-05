@@ -1,0 +1,295 @@
+2026-03-03 13:23:50  =====================================================
+2026-03-03 13:23:50    HESTIA RESET & DIAGNOSTIC
+2026-03-03 13:23:50    03/03/2026 13:23:50
+2026-03-03 13:23:50  =====================================================
+2026-03-03 13:23:50  
+2026-03-03 13:23:50  --- SYSTEM INFO ---
+2026-03-03 13:23:50  Hostname: HESTIA
+2026-03-03 13:23:50  OS: Microsoft Windows 10 Enterprise N LTSC
+2026-03-03 13:23:50  BIOS: N1MET78W (1.63 )
+2026-03-03 13:23:50  Uptime: 4.16:16:39.4283241
+2026-03-03 13:23:51  Battery: PowerOnline=True Charging=False RemainingCapacity=37300 mWh
+2026-03-03 13:23:51  Battery health: 67.6% (38530 mWh of 57020 design)
+2026-03-03 13:23:51  
+2026-03-03 13:23:51  --- POWER STATES ---
+2026-03-03 13:23:51    The following sleep states are available on this system:
+2026-03-03 13:23:51        Standby (S3)
+2026-03-03 13:23:51        Hibernate
+2026-03-03 13:23:51        Hybrid Sleep
+2026-03-03 13:23:51    
+2026-03-03 13:23:51    The following sleep states are not available on this system:
+2026-03-03 13:23:51        Standby (S1)
+2026-03-03 13:23:51    	The system firmware does not support this standby state.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51        Standby (S2)
+2026-03-03 13:23:51    	The system firmware does not support this standby state.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51        Standby (S0 Low Power Idle)
+2026-03-03 13:23:51    	The system firmware does not support this standby state.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51        Fast Startup
+2026-03-03 13:23:51    	This action is disabled in the current system policy.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51  
+2026-03-03 13:23:51  --- POWER REQUESTS (blocking sleep?) ---
+2026-03-03 13:23:51    DISPLAY:
+2026-03-03 13:23:51    None.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51    SYSTEM:
+2026-03-03 13:23:51    None.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51    AWAYMODE:
+2026-03-03 13:23:51    None.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51    EXECUTION:
+2026-03-03 13:23:51    None.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51    PERFBOOST:
+2026-03-03 13:23:51    None.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51    ACTIVELOCKSCREEN:
+2026-03-03 13:23:51    None.
+2026-03-03 13:23:51    
+2026-03-03 13:23:51  
+2026-03-03 13:23:51  --- LAST WAKE ---
+2026-03-03 13:23:51    Wake History Count - 1
+2026-03-03 13:23:51    Wake History [0]
+2026-03-03 13:23:51      Wake Source Count - 0
+2026-03-03 13:23:51  
+2026-03-03 13:23:51  --- CURRENT WAKE TIMERS ---
+2026-03-03 13:23:51    There are no active wake timers in the system.
+2026-03-03 13:23:51  
+2026-03-03 13:23:51  --- SLEEP SETTINGS ---
+2026-03-03 13:23:51    Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)
+2026-03-03 13:23:51      GUID Alias: SCHEME_BALANCED
+2026-03-03 13:23:51      Subgroup GUID: 238c9fa8-0aad-41ed-83f4-97be242c8f20  (Sleep)
+2026-03-03 13:23:51        GUID Alias: SUB_SLEEP
+2026-03-03 13:23:51        Power Setting GUID: 29f6c1db-86da-48c5-9fdb-f2b67b1f44da  (Sleep after)
+2026-03-03 13:23:51          GUID Alias: STANDBYIDLE
+2026-03-03 13:23:51          Minimum Possible Setting: 0x00000000
+2026-03-03 13:23:51          Maximum Possible Setting: 0xffffffff
+2026-03-03 13:23:52          Possible Settings increment: 0x00000001
+2026-03-03 13:23:52          Possible Settings units: Seconds
+2026-03-03 13:23:52        Current AC Power Setting Index: 0x00000000
+2026-03-03 13:23:52        Current DC Power Setting Index: 0x00000000
+2026-03-03 13:23:52    
+2026-03-03 13:23:52        Power Setting GUID: 94ac6d29-73ce-41a6-809f-6363ba21b47e  (Allow hybrid sleep)
+2026-03-03 13:23:52          GUID Alias: HYBRIDSLEEP
+2026-03-03 13:23:52          Possible Setting Index: 000
+2026-03-03 13:23:52          Possible Setting Friendly Name: Off
+2026-03-03 13:23:52          Possible Setting Index: 001
+2026-03-03 13:23:52          Possible Setting Friendly Name: On
+2026-03-03 13:23:52        Current AC Power Setting Index: 0x00000000
+2026-03-03 13:23:52        Current DC Power Setting Index: 0x00000000
+2026-03-03 13:23:52    
+2026-03-03 13:23:52        Power Setting GUID: 9d7815a6-7ee4-497e-8888-515a05f02364  (Hibernate after)
+2026-03-03 13:23:52          GUID Alias: HIBERNATEIDLE
+2026-03-03 13:23:52          Minimum Possible Setting: 0x00000000
+2026-03-03 13:23:52          Maximum Possible Setting: 0xffffffff
+2026-03-03 13:23:52          Possible Settings increment: 0x00000001
+2026-03-03 13:23:52          Possible Settings units: Seconds
+2026-03-03 13:23:52        Current AC Power Setting Index: 0x00000000
+2026-03-03 13:23:52        Current DC Power Setting Index: 0x00000000
+2026-03-03 13:23:52    
+2026-03-03 13:23:52        Power Setting GUID: bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d  (Allow wake timers)
+2026-03-03 13:23:52          GUID Alias: RTCWAKE
+2026-03-03 13:23:52          Possible Setting Index: 000
+2026-03-03 13:23:52          Possible Setting Friendly Name: Disable
+2026-03-03 13:23:52          Possible Setting Index: 001
+2026-03-03 13:23:52          Possible Setting Friendly Name: Enable
+2026-03-03 13:23:52          Possible Setting Index: 002
+2026-03-03 13:23:52          Possible Setting Friendly Name: Important Wake Timers Only
+2026-03-03 13:23:52        Current AC Power Setting Index: 0x00000001
+2026-03-03 13:23:52        Current DC Power Setting Index: 0x00000001
+2026-03-03 13:23:52    
+2026-03-03 13:23:52  
+2026-03-03 13:23:52  --- HIBERNATE FILE ---
+2026-03-03 13:23:52    hiberfil.sys NOT found - hibernate may not be fully enabled
+2026-03-03 13:23:52  
+2026-03-03 13:23:52  --- RECENT WINDOWS UPDATES ---
+2026-03-03 13:23:52    KB5075912  02/11/2026 00:00:00  Security Update
+2026-03-03 13:23:52    KB5077456  02/11/2026 00:00:00  Security Update
+2026-03-03 13:23:52    KB5075039  01/21/2026 00:00:00  Security Update
+2026-03-03 13:23:52    KB5066130  12/21/2025 00:00:00  Update
+2026-03-03 13:23:52    KB5066135  12/20/2025 00:00:00  Update
+2026-03-03 13:23:52    KB5011048  12/20/2025 00:00:00  Update
+2026-03-03 13:23:52    KB5026037  12/19/2025 00:00:00  Update
+2026-03-03 13:23:52    KB5068780  12/19/2025 00:00:00  Security Update
+2026-03-03 13:23:52    KB5003791  10/06/2021 00:00:00  Update
+2026-03-03 13:23:52    KB5005699  10/06/2021 00:00:00  Security Update
+2026-03-03 13:23:52  
+2026-03-03 13:23:52  --- SERVICES (wazuh/elastic/relevant) ---
+2026-03-03 13:23:52    Power | Status=Running | StartType=Automatic
+2026-03-03 13:23:52    Task Scheduler | Status=Running | StartType=Automatic
+2026-03-03 13:23:52    Hyper-V PowerShell Direct Service | Status=Stopped | StartType=Manual
+2026-03-03 13:23:52    Wazuh | Status=Running | StartType=Automatic
+2026-03-03 13:23:52  
+2026-03-03 13:23:52  --- SCHEDULED TASKS ---
+2026-03-03 13:23:53    HestiaSleepWeekend | State=Ready | LastResult=2147946720 | LastRun=03/02/2026 13:07:07 | NextRun=03/06/2026 00:00:00
+2026-03-03 13:23:53    HestiaSleepWeeknights | State=Ready | LastResult=0 | LastRun=03/02/2026 22:00:00 | NextRun=03/03/2026 22:00:00
+2026-03-03 13:23:53    HestiaWakeTest | State=Ready | LastResult=2147946720 | LastRun=02/26/2026 20:50:50 | NextRun=
+2026-03-03 13:23:53  
+2026-03-03 13:23:53  --- WAKE EVENTS (last 14 days) ---
+2026-03-03 13:23:54    03/03/2026 11:40:31  The system has returned from a low power state. Sleep Time: ?2026?-?03?-?03T05:00:09.844929200Z Wake Time: ?2026?-?03?-?03T18:40:29.792077400Z Wake Source: Unknown
+2026-03-03 13:23:54    03/03/2026 11:40:28  The system time has changed to ?2026?-?03?-?03T18:40:28.500000000Z from ?2026?-?03?-?03T05:00:14.796212100Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    03/02/2026 17:41:41  The system time has changed to ?2026?-?03?-?03T00:41:41.538272800Z from ?2026?-?03?-?03T00:41:41.536840500Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 4940).
+2026-03-03 13:23:54    03/02/2026 17:30:59  The system has returned from a low power state. Sleep Time: ?2026?-?03?-?02T23:36:26.733110100Z Wake Time: ?2026?-?03?-?03T00:30:57.205752300Z Wake Source: Unknown
+2026-03-03 13:23:54    03/02/2026 17:30:56  The system time has changed to ?2026?-?03?-?03T00:30:56.500000000Z from ?2026?-?03?-?02T23:36:33.555202600Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    03/02/2026 16:36:27  The system has returned from a low power state. Sleep Time: ?2026?-?03?-?02T23:36:26.733110100Z Wake Time: ?2026?-?03?-?02T23:36:26.733110100Z Wake Source: S4 Doze to Hibernate
+2026-03-03 13:23:54    03/02/2026 16:36:25  The system time has changed to ?2026?-?03?-?02T23:36:25.500000000Z from ?2026?-?03?-?02T20:36:24.785394400Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    03/02/2026 13:15:19  The system time has changed to ?2026?-?03?-?02T20:15:19.817622300Z from ?2026?-?03?-?02T20:15:19.816584500Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6980).
+2026-03-03 13:23:54    03/02/2026 13:15:19  The system time has changed to ?2026?-?03?-?02T20:15:19.816584500Z from ?2026?-?03?-?02T20:15:19.815306300Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6980).
+2026-03-03 13:23:54    03/02/2026 13:15:19  The system time has changed to ?2026?-?03?-?02T20:15:19.815306300Z from ?2026?-?03?-?02T20:15:18.198045000Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6980).
+2026-03-03 13:23:54    03/02/2026 13:04:31  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T07:45:47.611226100Z Wake Time: ?2026?-?03?-?02T20:04:29.449591500Z Wake Source: Unknown
+2026-03-03 13:23:54    03/02/2026 13:04:28  The system time has changed to ?2026?-?03?-?02T20:04:28.500000000Z from ?2026?-?02?-?27T07:45:51.525076400Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/27/2026 00:45:48  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T07:45:47.611226100Z Wake Time: ?2026?-?02?-?27T07:45:47.611226100Z Wake Source: S4 Doze to Hibernate
+2026-03-03 13:23:54    02/27/2026 00:45:46  The system time has changed to ?2026?-?02?-?27T07:45:46.500000000Z from ?2026?-?02?-?27T04:45:45.524670600Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 21:19:59  The system time has changed to ?2026?-?02?-?27T04:19:59.015953600Z from ?2026?-?02?-?27T04:19:59.015295500Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 10968).
+2026-03-03 13:23:54    02/26/2026 21:07:26  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:54    02/26/2026 20:47:14  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T03:41:48.375829100Z Wake Time: ?2026?-?02?-?27T03:47:12.980641800Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 20:47:12  The system time has changed to ?2026?-?02?-?27T03:47:12.500000000Z from ?2026?-?02?-?27T03:41:54.942747500Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 20:40:19  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T03:33:33.363553100Z Wake Time: ?2026?-?02?-?27T03:40:17.915742700Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 20:40:17  The system time has changed to ?2026?-?02?-?27T03:40:17.500000000Z from ?2026?-?02?-?27T03:33:40.004695400Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 20:30:25  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T03:16:04.249550800Z Wake Time: ?2026?-?02?-?27T03:30:23.946346000Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 20:30:23  The system time has changed to ?2026?-?02?-?27T03:30:23.500000000Z from ?2026?-?02?-?27T03:16:11.010714200Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 20:10:01  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T03:03:38.369619700Z Wake Time: ?2026?-?02?-?27T03:09:59.045895000Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 20:09:58  The system time has changed to ?2026?-?02?-?27T03:09:58.500000000Z from ?2026?-?02?-?27T03:03:44.692562300Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 20:01:19  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T02:27:00.685395500Z Wake Time: ?2026?-?02?-?27T03:01:17.977662600Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 20:01:17  The system time has changed to ?2026?-?02?-?27T03:01:17.500000000Z from ?2026?-?02?-?27T02:27:07.179393200Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 19:24:43  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T02:13:24.428207000Z Wake Time: ?2026?-?02?-?27T02:24:41.129480700Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 19:24:40  The system time has changed to ?2026?-?02?-?27T02:24:40.500000000Z from ?2026?-?02?-?27T02:13:30.865692500Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 19:10:18  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?27T02:07:37.489502500Z Wake Time: ?2026?-?02?-?27T02:10:16.577488300Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 19:10:15  The system time has changed to ?2026?-?02?-?27T02:10:15.500000000Z from ?2026?-?02?-?27T02:07:44.417401600Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 18:59:43  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:54    02/26/2026 18:51:30  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:54    02/26/2026 18:41:37  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T23:30:45.362886400Z Wake Time: ?2026?-?02?-?27T01:41:36.688309000Z Wake Source: Power Button
+2026-03-03 13:23:54    02/26/2026 18:41:34  The system time has changed to ?2026?-?02?-?27T01:41:34.500000000Z from ?2026?-?02?-?26T23:30:49.501108400Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 16:30:43  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T23:29:58.693104300Z Wake Time: ?2026?-?02?-?26T23:30:42.668657200Z Wake Source: Power Button
+2026-03-03 13:23:54    02/26/2026 16:30:36  The system time has changed to ?2026?-?02?-?26T23:30:36.500000000Z from ?2026?-?02?-?26T23:30:00.493250100Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 16:26:06  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T22:32:18.840399400Z Wake Time: ?2026?-?02?-?26T23:26:06.162590700Z Wake Source: Power Button
+2026-03-03 13:23:54    02/26/2026 16:26:04  The system time has changed to ?2026?-?02?-?26T23:26:04.500000000Z from ?2026?-?02?-?26T22:32:20.166386300Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 15:17:26  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T21:31:25.533830700Z Wake Time: ?2026?-?02?-?26T22:17:24.970486900Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 15:17:24  The system time has changed to ?2026?-?02?-?26T22:17:24.500000000Z from ?2026?-?02?-?26T21:31:32.602297500Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 14:29:07  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T21:13:06.450246800Z Wake Time: ?2026?-?02?-?26T21:29:05.912338100Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 14:29:05  The system time has changed to ?2026?-?02?-?26T21:29:05.500000000Z from ?2026?-?02?-?26T21:13:13.338062800Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 14:03:43  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T20:34:50.731974600Z Wake Time: ?2026?-?02?-?26T21:03:41.943646600Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 14:03:41  The system time has changed to ?2026?-?02?-?26T21:03:41.500000000Z from ?2026?-?02?-?26T20:34:56.982030700Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 13:31:11  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T20:22:27.819064900Z Wake Time: ?2026?-?02?-?26T20:31:09.427780400Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 13:31:08  The system time has changed to ?2026?-?02?-?26T20:31:08.500000000Z from ?2026?-?02?-?26T20:22:33.471707600Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 13:16:14  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T20:01:59.531114100Z Wake Time: ?2026?-?02?-?26T20:16:12.573632500Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 13:16:11  The system time has changed to ?2026?-?02?-?26T20:16:11.500000000Z from ?2026?-?02?-?26T20:02:05.493883100Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 09:58:53  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T16:46:34.254070100Z Wake Time: ?2026?-?02?-?26T16:58:51.497083200Z Wake Source: Unknown
+2026-03-03 13:23:54    02/26/2026 09:58:50  The system time has changed to ?2026?-?02?-?26T16:58:50.500000000Z from ?2026?-?02?-?26T16:46:40.988902100Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/26/2026 09:07:46  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?26T05:00:09.118375700Z Wake Time: ?2026?-?02?-?26T16:07:44.826244500Z Wake Source: Power Button
+2026-03-03 13:23:54    02/26/2026 09:07:43  The system time has changed to ?2026?-?02?-?26T16:07:43.500000000Z from ?2026?-?02?-?26T05:00:12.557372000Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/25/2026 13:49:29  The system time has changed to ?2026?-?02?-?25T20:49:29.890677000Z from ?2026?-?02?-?25T20:49:29.888570300Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 8068).
+2026-03-03 13:23:54    02/25/2026 13:49:29  The system time has changed to ?2026?-?02?-?25T20:49:29.888570300Z from ?2026?-?02?-?25T20:49:29.886366300Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 8068).
+2026-03-03 13:23:54    02/25/2026 13:49:29  The system time has changed to ?2026?-?02?-?25T20:49:29.886366300Z from ?2026?-?02?-?25T20:49:28.469101300Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 8068).
+2026-03-03 13:23:54    02/25/2026 09:53:35  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?25T16:52:05.455917500Z Wake Time: ?2026?-?02?-?25T16:53:34.840238300Z Wake Source: Power Button
+2026-03-03 13:23:54    02/25/2026 09:53:33  The system time has changed to ?2026?-?02?-?25T16:53:33.500000000Z from ?2026?-?02?-?25T16:52:10.717237800Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:54    02/25/2026 09:48:45  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:55    02/25/2026 08:45:57  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?25T05:00:07.359786400Z Wake Time: ?2026?-?02?-?25T15:45:55.925947000Z Wake Source: Power Button
+2026-03-03 13:23:55    02/25/2026 08:45:54  The system time has changed to ?2026?-?02?-?25T15:45:54.500000000Z from ?2026?-?02?-?25T05:00:10.898624300Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/24/2026 14:47:08  The system time has changed to ?2026?-?02?-?24T21:47:08.736722600Z from ?2026?-?02?-?24T21:47:08.734653900Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11008).
+2026-03-03 13:23:55    02/24/2026 08:15:36  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?24T05:00:07.730928800Z Wake Time: ?2026?-?02?-?24T15:15:34.859882600Z Wake Source: Power Button
+2026-03-03 13:23:55    02/24/2026 08:15:33  The system time has changed to ?2026?-?02?-?24T15:15:33.500000000Z from ?2026?-?02?-?24T05:00:11.171676700Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/23/2026 15:24:53  The system time has changed to ?2026?-?02?-?23T22:24:53.918238300Z from ?2026?-?02?-?23T22:24:53.915768200Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6856).
+2026-03-03 13:23:55    02/23/2026 15:24:53  The system time has changed to ?2026?-?02?-?23T22:24:53.915768200Z from ?2026?-?02?-?23T22:24:53.912761800Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6856).
+2026-03-03 13:23:55    02/23/2026 15:24:53  The system time has changed to ?2026?-?02?-?23T22:24:53.912761800Z from ?2026?-?02?-?23T22:24:52.129755000Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6856).
+2026-03-03 13:23:55    02/23/2026 08:23:13  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?23T05:00:07.961365700Z Wake Time: ?2026?-?02?-?23T15:23:12.955664500Z Wake Source: Power Button
+2026-03-03 13:23:55    02/23/2026 08:23:10  The system time has changed to ?2026?-?02?-?23T15:23:10.500000000Z from ?2026?-?02?-?23T05:00:11.588015900Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/22/2026 15:24:22  The system time has changed to ?2026?-?02?-?22T22:24:22.486911600Z from ?2026?-?02?-?22T22:24:22.484789900Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 4628).
+2026-03-03 13:23:55    02/21/2026 15:25:07  The system time has changed to ?2026?-?02?-?21T22:25:07.591240300Z from ?2026?-?02?-?21T22:25:07.589102300Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 10976).
+2026-03-03 13:23:55    02/21/2026 15:25:07  The system time has changed to ?2026?-?02?-?21T22:25:07.589102300Z from ?2026?-?02?-?21T22:25:07.585964200Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 10976).
+2026-03-03 13:23:55    02/21/2026 15:25:07  The system time has changed to ?2026?-?02?-?21T22:25:07.585964200Z from ?2026?-?02?-?21T22:25:06.422733500Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 10976).
+2026-03-03 13:23:55    02/21/2026 08:59:31  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?21T07:00:07.982095600Z Wake Time: ?2026?-?02?-?21T15:59:30.676754500Z Wake Source: Timer - Windows will execute 'NT TASK\HestiaWakeWeekend' scheduled task that requested waking the computer.
+2026-03-03 13:23:55    02/21/2026 08:59:29  The system time has changed to ?2026?-?02?-?21T15:59:29.500000000Z from ?2026?-?02?-?21T07:00:11.518418900Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/20/2026 15:24:44  The system time has changed to ?2026?-?02?-?20T22:24:44.789704600Z from ?2026?-?02?-?20T22:24:44.788061300Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 9504).
+2026-03-03 13:23:55    02/20/2026 15:24:44  The system time has changed to ?2026?-?02?-?20T22:24:44.788061300Z from ?2026?-?02?-?20T22:24:44.784964400Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 9504).
+2026-03-03 13:23:55    02/20/2026 15:24:44  The system time has changed to ?2026?-?02?-?20T22:24:44.784964400Z from ?2026?-?02?-?20T22:24:43.565911100Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 9504).
+2026-03-03 13:23:55    02/20/2026 09:41:00  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?20T16:33:30.140583100Z Wake Time: ?2026?-?02?-?20T16:40:59.590492500Z Wake Source: Power Button
+2026-03-03 13:23:55    02/20/2026 09:40:58  The system time has changed to ?2026?-?02?-?20T16:40:58.500000000Z from ?2026?-?02?-?20T16:33:35.453520600Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/20/2026 09:23:56  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:55    02/20/2026 09:08:23  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:55    02/20/2026 08:56:02  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:55    02/20/2026 08:51:21  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?20T05:00:09.397932000Z Wake Time: ?2026?-?02?-?20T15:51:19.871713000Z Wake Source: Unknown
+2026-03-03 13:23:55    02/20/2026 08:51:18  The system time has changed to ?2026?-?02?-?20T15:51:18.500000000Z from ?2026?-?02?-?20T05:00:13.664473800Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/19/2026 16:53:17  The system time has changed to ?2026?-?02?-?19T23:53:17.925765500Z from ?2026?-?02?-?19T23:53:17.923931400Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11224).
+2026-03-03 13:23:55    02/19/2026 16:53:17  The system time has changed to ?2026?-?02?-?19T23:53:17.923931400Z from ?2026?-?02?-?19T23:53:17.923212400Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11224).
+2026-03-03 13:23:55    02/19/2026 16:53:17  The system time has changed to ?2026?-?02?-?19T23:53:17.923212400Z from ?2026?-?02?-?19T23:53:16.427941100Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11224).
+2026-03-03 13:23:55    02/19/2026 16:42:36  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:55    02/19/2026 16:39:14  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?19T23:38:57.682642700Z Wake Time: ?2026?-?02?-?19T23:39:14.086617500Z Wake Source: Power Button
+2026-03-03 13:23:55    02/19/2026 16:39:12  The system time has changed to ?2026?-?02?-?19T23:39:12.500000000Z from ?2026?-?02?-?19T23:39:01.115174200Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/19/2026 16:38:54  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?19T23:38:42.035864100Z Wake Time: ?2026?-?02?-?19T23:38:54.022563500Z Wake Source: Power Button
+2026-03-03 13:23:55    02/19/2026 16:38:52  The system time has changed to ?2026?-?02?-?19T23:38:52.500000000Z from ?2026?-?02?-?19T23:38:43.670983800Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/19/2026 16:28:33  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?19T05:00:09.049166100Z Wake Time: ?2026?-?02?-?19T23:28:31.460538100Z Wake Source: Unknown
+2026-03-03 13:23:55    02/19/2026 16:28:30  The system time has changed to ?2026?-?02?-?19T23:28:30.500000000Z from ?2026?-?02?-?19T05:00:13.528172100Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:55    02/18/2026 18:51:21  The system time has changed to ?2026?-?02?-?19T01:51:21.637034100Z from ?2026?-?02?-?19T01:51:21.635908600Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 6572).
+2026-03-03 13:23:55    02/18/2026 10:32:36  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:55    02/18/2026 10:25:13  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:56    02/18/2026 09:51:24  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:56    02/18/2026 09:08:26  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:56    02/17/2026 22:00:42  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?18T05:00:09.955171000Z Wake Time: ?2026?-?02?-?18T05:00:41.794133300Z Wake Source: Power Button
+2026-03-03 13:23:56    02/17/2026 22:00:40  The system time has changed to ?2026?-?02?-?18T05:00:40.500000000Z from ?2026?-?02?-?18T05:00:13.572967600Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:56    02/17/2026 19:42:42  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:56    02/17/2026 19:34:31  File System Filter 'CldFlt' (Version 10.0, ?1974?-?08?-?01T06:10:31.000000000Z) unloaded successfully.
+2026-03-03 13:23:56    02/17/2026 19:33:46  The system has returned from a low power state. Sleep Time: ?2026?-?02?-?18T02:33:37.337234000Z Wake Time: ?2026?-?02?-?18T02:33:45.978268500Z Wake Source: Power Button
+2026-03-03 13:23:56    02/17/2026 19:33:43  The system time has changed to ?2026?-?02?-?18T02:33:43.500000000Z from ?2026?-?02?-?18T02:33:39.018293500Z. Change Reason: System time synchronized with the hardware clock. Process: '' (PID 4).
+2026-03-03 13:23:56    02/17/2026 13:50:22  The system time has changed to ?2026?-?02?-?17T20:50:22.463509800Z from ?2026?-?02?-?17T20:50:22.460149700Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11300).
+2026-03-03 13:23:56    02/17/2026 13:50:22  The system time has changed to ?2026?-?02?-?17T20:50:22.460149700Z from ?2026?-?02?-?17T20:50:22.457180700Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11300).
+2026-03-03 13:23:56    02/17/2026 13:50:22  The system time has changed to ?2026?-?02?-?17T20:50:22.457180700Z from ?2026?-?02?-?17T20:50:21.235373600Z. Change Reason: An application or system component changed the time. Process: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11300).
+2026-03-03 13:23:58  
+2026-03-03 13:23:58  =====================================================
+2026-03-03 13:23:58    APPLYING RESET
+2026-03-03 13:23:58  =====================================================
+2026-03-03 13:23:58  
+2026-03-03 13:23:58  --- Restoring default power schemes ---
+2026-03-03 13:23:58    Done
+2026-03-03 13:23:58  --- Enabling hibernate ---
+2026-03-03 13:23:58    Done
+2026-03-03 13:23:58  --- Enabling wake timers (AC) ---
+2026-03-03 13:23:58    Done
+2026-03-03 13:23:58  --- Enabling wake timers (DC/battery) ---
+2026-03-03 13:23:58    Done
+2026-03-03 13:23:58  --- Applying power scheme ---
+2026-03-03 13:23:58    Done
+2026-03-03 13:23:58  
+2026-03-03 13:23:58  --- Creating wake stub ---
+2026-03-03 13:23:58    C:\Hestia\wake.ps1 created
+2026-03-03 13:23:58  
+2026-03-03 13:23:58  --- Removing old wake tasks if present ---
+2026-03-03 13:24:01    Removed: HestiaWakeTest
+2026-03-03 13:24:01  
+2026-03-03 13:24:01  --- Creating HestiaWakeWeekdays (7am Mon-Fri) ---
+2026-03-03 13:24:01    Created
+2026-03-03 13:24:01  --- Creating HestiaWakeWeekend (9am Sat-Sun) ---
+2026-03-03 13:24:01    Created
+2026-03-03 13:24:01  
+2026-03-03 13:24:01  --- Updating smart-sleep.ps1 ---
+2026-03-03 13:24:01    smart-sleep.ps1 updated
+2026-03-03 13:24:01  
+2026-03-03 13:24:01  --- Creating test wake task (10 minutes from now) ---
+2026-03-03 13:24:01    HestiaWakeTest set for 03/03/2026 13:34:01
+2026-03-03 13:24:01  
+2026-03-03 13:24:01  --- Final wake timers check ---
+2026-03-03 13:24:01    Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 1:33:31 PM on 3/3/2026.
+2026-03-03 13:24:01      Reason: Windows will execute 'NT TASK\HestiaWakeTest' scheduled task that requested waking the computer.
+2026-03-03 13:24:01  
+2026-03-03 13:24:01  =====================================================
+2026-03-03 13:24:01    RESET COMPLETE
+2026-03-03 13:24:01  =====================================================
+2026-03-03 13:24:01  
+2026-03-03 13:24:01  Current tasks:
+2026-03-03 13:24:01    HestiaSleepWeekend | State=Ready
+2026-03-03 13:24:01    HestiaSleepWeeknights | State=Ready
+2026-03-03 13:24:01    HestiaWakeTest | State=Ready
+2026-03-03 13:24:01    HestiaWakeWeekdays | State=Ready
+2026-03-03 13:24:01    HestiaWakeWeekend | State=Ready
+2026-03-03 13:24:02  
+2026-03-03 13:24:02  NEXT STEP: Stay in the room and watch for Hestia to wake at 03/03/2026 13:34:01
+2026-03-03 13:24:02  If she wakes: run 'powercfg /lastwake' and check for Timer (not Power Button)
+2026-03-03 13:24:02  If she does not wake: run 'powercfg /sleepstudy' and paste results
+2026-03-03 13:24:02  
+2026-03-03 13:24:02  Log saved to: C:\Hestia\hestia-reset.log
+2026-03-03 13:24:02  
+2026-03-03 13:24:02  Hibernating now...

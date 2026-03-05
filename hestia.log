@@ -1,0 +1,153 @@
+2026-01-02 16:57:28  CPU=1.69180020811243 Idle=1 Audio=0 cpuActive=False idleActive=True audioActive=False
+2026-01-02 16:57:28  System active - skipping sleep.
+2026-01-02 17:02:30  CPU=1.38357937390009 Idle=3 Audio=0 PastBedtime=True Reasons=[User active]
+2026-01-02 17:02:30  System active — skipping sleep.
+2026-01-02 17:05:01  CPU=1.78656960179031 Idle=3 Audio=0 PastBedtime=False Reasons=[User active]
+2026-01-02 17:05:01  System active — skipping sleep.
+2026-01-03 00:00:06  CPU=1.97368592069384 Idle=32619 Audio=0 PastBedtime=False Reasons=[]
+2026-01-03 00:00:06  System inactive — going to sleep now.
+2026-01-04 22:00:07  CPU=0.434278201433436 Idle=198219 Audio=0 PastBedtime=True Reasons=[]
+2026-01-04 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-05 22:00:06  CPU=1.57793258017143 Idle=284617 Audio=0 PastBedtime=True Reasons=[]
+2026-01-05 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-06 22:00:06  CPU=0.000198449218580254 Idle=371017 Audio=0 PastBedtime=True Reasons=[]
+2026-01-06 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-07 22:00:06  CPU=6.09072553378683 Idle=457417 Audio=0 PastBedtime=True Reasons=[]
+2026-01-07 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-08 22:00:06  CPU=0.765869174882094 Idle=543815 Audio=0 PastBedtime=True Reasons=[]
+2026-01-08 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-10 00:00:06  CPU=0 Idle=637415 Audio=0 PastBedtime=False Reasons=[]
+2026-01-10 00:00:06  System inactive — going to sleep now.
+2026-01-11 22:00:06  CPU=4.59462615655718 Idle=803013 Audio=0 PastBedtime=True Reasons=[]
+2026-01-11 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-12 22:00:07  CPU=1.54533694900615 Idle=84040 Audio=0 PastBedtime=True Reasons=[]
+2026-01-12 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-15 22:00:06  CPU=0.15321661631984 Idle=343238 Audio=0 PastBedtime=True Reasons=[]
+2026-01-15 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-19 22:00:06  CPU=1.53533277964378 Idle=688838 Audio=0 PastBedtime=True Reasons=[]
+2026-01-19 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-01-20 22:00:12  CPU=3.66755553141586 Idle=9929 Audio=0 PastBedtime=True Reasons=[]
+2026-01-20 22:00:12  Past bedtime + idle 15 min — sleeping now.
+2026-01-21 22:00:07  CPU=3.13968402390198 Idle=96322 Audio=0 PastBedtime=True Reasons=[]
+2026-01-21 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-22 22:00:07  CPU=0 Idle=43769 Audio=0 PastBedtime=True Reasons=[]
+2026-01-22 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-24 00:00:07  CPU=1.96789363521853 Idle=137369 Audio=0 PastBedtime=False Reasons=[]
+2026-01-24 00:00:07  System inactive — going to sleep now.
+2026-01-25 22:00:07  CPU=0.776476846389706 Idle=302968 Audio=0 PastBedtime=True Reasons=[]
+2026-01-25 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-26 22:00:07  CPU=10.5950741991177 Idle=389366 Audio=0 PastBedtime=True Reasons=[CPU busy]
+2026-01-26 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-27 22:00:07  CPU=1.5741339373686 Idle=475766 Audio=0 PastBedtime=True Reasons=[]
+2026-01-27 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-28 22:00:07  CPU=2.20080531091211 Idle=562165 Audio=0 PastBedtime=True Reasons=[]
+2026-01-28 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-01-29 22:00:08  CPU=20.2652087534247 Idle=648565 Audio=0 PastBedtime=True Reasons=[CPU busy]
+2026-01-29 22:00:08  Past bedtime + idle 15 min — sleeping now.
+2026-01-31 00:00:08  CPU=22.6952038867615 Idle=742165 Audio=0 PastBedtime=False Reasons=[CPU busy]
+2026-01-31 00:00:08  System active — skipping sleep.
+2026-02-01 22:00:06  CPU=1.60749314559651 Idle=907763 Audio=0 PastBedtime=True Reasons=[]
+2026-02-01 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-02-02 22:00:07  CPU=3.18115026399178 Idle=994163 Audio=0 PastBedtime=True Reasons=[]
+2026-02-02 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-03 22:00:07  CPU=1.49304107868027 Idle=1080562 Audio=0 PastBedtime=True Reasons=[]
+2026-02-03 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-04 22:00:07  CPU=1.41237615792397 Idle=1166961 Audio=0 PastBedtime=True Reasons=[]
+2026-02-04 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-05 22:00:07  CPU=3.52924167107604 Idle=1253361 Audio=0 PastBedtime=True Reasons=[]
+2026-02-05 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-07 00:00:07  CPU=1.49651336748469 Idle=1346959 Audio=0 PastBedtime=False Reasons=[]
+2026-02-07 00:00:07  System inactive — going to sleep now.
+2026-02-08 22:00:07  CPU=2.03828493158638 Idle=1512558 Audio=0 PastBedtime=True Reasons=[]
+2026-02-08 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-10 22:00:07  CPU=1.19492707930436 Idle=1685357 Audio=0 PastBedtime=True Reasons=[]
+2026-02-10 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-11 22:00:07  CPU=1.90328997889243 Idle=29382 Audio=0 PastBedtime=True Reasons=[]
+2026-02-11 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-12 22:00:07  CPU=0.431996084510633 Idle=115782 Audio=0 PastBedtime=True Reasons=[]
+2026-02-12 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-15 22:00:08  CPU=0.445774867032112 Idle=84469 Audio=0 PastBedtime=True Reasons=[]
+2026-02-15 22:00:08  Past bedtime + idle 15 min — sleeping now.
+2026-02-16 22:00:07  CPU=1.12648664657615 Idle=170869 Audio=0 PastBedtime=True Reasons=[]
+2026-02-16 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-17 22:00:09  CPU=9.11453707145996 Idle=8262 Audio=0 PastBedtime=True Reasons=[]
+2026-02-17 22:00:09  Past bedtime + idle 15 min — sleeping now.
+2026-02-18 22:00:09  CPU=0.158368795416708 Idle=41267 Audio=0 PastBedtime=True Reasons=[]
+2026-02-18 22:00:09  Past bedtime + idle 15 min — sleeping now.
+2026-02-19 22:00:09  CPU=0 Idle=19071 Audio=0 PastBedtime=True Reasons=[]
+2026-02-19 22:00:09  Past bedtime + idle 15 min — sleeping now.
+2026-02-20 09:29:54  Watchdog: Task 'HestiaSleepWeeknights' missing!
+2026-02-20 09:29:55  Watchdog: Task 'HestiaSleepWeekend' missing!
+2026-02-20 09:29:55  Watchdog: Task 'HestiaWakeWeekdays' missing!
+2026-02-20 09:29:56  Watchdog: Task 'HestiaWakeWeekend' missing!
+2026-02-20 09:29:58  CPU=1.89059507009237 Idle=4 Audio=0 PastBedtime=False Reasons=[User active]
+2026-02-20 09:29:58  System active — skipping sleep.
+2026-02-20 09:32:41  CPU=2.08140977702762 Idle=3 Audio=0 PastBedtime=False Reasons=[User active]
+2026-02-20 09:32:41  System active — skipping sleep.
+2026-02-21 00:00:07  CPU=1.15947082429902 Idle=52582 Audio=0 PastBedtime=False Reasons=[]
+2026-02-21 00:00:07  System inactive — going to sleep now.
+2026-02-22 22:00:07  CPU=3.17176283012006 Idle=218181 Audio=0 PastBedtime=True Reasons=[]
+2026-02-22 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-23 22:00:04  Watchdog: Task 'HestiaWakeWeekdays' missing!
+2026-02-23 22:00:05  Watchdog: Task 'HestiaWakeWeekend' missing!
+2026-02-23 22:00:07  CPU=0.0713290852989101 Idle=304579 Audio=0 PastBedtime=True Reasons=[]
+2026-02-23 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-24 08:25:10  RTC wake alarm set for 02/25/2026 07:00:00
+2026-02-24 22:00:07  CPU=0.464860274762169 Idle=390979 Audio=0 PastBedtime=True Reasons=[]
+2026-02-24 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-02-25 09:28:29  CPU=2.11147672054911 Idle=0 Audio=0 PastBedtime=False Reasons=[User active]
+2026-02-25 09:28:30  System active — skipping sleep.
+2026-02-25 09:28:44  CPU=0.374555955185629 Idle=1 Audio=0 PastBedtime=False Reasons=[User active]
+2026-02-25 09:28:44  System active — skipping sleep.
+2026-02-25 09:31:34  CPU=0.306766050186968 Idle=2 Audio=0 PastBedtime=True Reasons=[User active]
+2026-02-25 09:31:34  System active — skipping sleep.
+2026-02-25 09:52:03  CPU=3.7386634025007 Idle=3 Audio=0 PastBedtime=True Reasons=[]
+2026-02-25 09:52:03  System inactive — going to sleep now.
+2026-02-25 09:52:03  RTC wake alarm set for 02/26/2026 07:00:00 (handle: 3352)
+2026-02-25 22:00:06  CPU=0 Idle=43892 Audio=0 PastBedtime=True Reasons=[]
+2026-02-25 22:00:06  Past bedtime + idle 15 min — sleeping now.
+2026-02-25 22:00:07  RTC wake alarm set for 02/26/2026 07:00:00 (handle: 2684)
+2026-02-26 09:46:28  
+2026-02-26 09:46:28  ================================================
+2026-02-26 09:46:28    (=^.^=)  HESTIA DAILY CHECK  2026-02-26
+2026-02-26 09:46:28    > wake up sleepyhead <
+2026-02-26 09:46:28  ================================================
+2026-02-26 09:46:28  
+2026-02-26 09:46:30  Watchdog: Wake timers: There are no active wake timers in the system.
+2026-02-26 09:46:30  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Fixed Feature     Power Button
+2026-02-26 09:46:32  CPU=0.345114832822457 Idle=3 Audio=0 PastBedtime=False Reasons=[]
+2026-02-26 09:46:32  System inactive — going to sleep now.
+2026-02-26 09:46:32  RTC wake alarm set for 02/26/2026 09:55:00 (handle: 2884)
+2026-03-02 22:00:01  
+2026-03-02 22:00:01  ================================================
+2026-03-02 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-02
+2026-03-02 22:00:01    > wake up sleepyhead <
+2026-03-02 22:00:01  ================================================
+2026-03-02 22:00:01  
+2026-03-02 22:00:04  Watchdog: Wake timers: There are no active wake timers in the system.
+2026-03-02 22:00:04  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 0
+2026-03-02 22:00:07  CPU=2.13879228328016 Idle=348776 Audio=0 PastBedtime=True Reasons=[]
+2026-03-02 22:00:07  Past bedtime + idle 15 min — sleeping now.
+2026-03-02 22:00:07  RTC wake alarm set for 03/02/2026 09:55:00 (handle: 3188)
+2026-03-03 22:00:01  
+2026-03-03 22:00:01  ================================================
+2026-03-03 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-03
+2026-03-03 22:00:01    > wake up sleepyhead <
+2026-03-03 22:00:01  ================================================
+2026-03-03 22:00:01  
+2026-03-03 22:00:05  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:29 AM on 3/4/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-03 22:00:05  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Fixed Feature     Power Button
+2026-03-03 22:00:08  CPU=0.861948374023547 Idle=21684 Audio=0 PastBedtime=True Reasons=[]
+2026-03-03 22:00:08  Past bedtime + idle 15 min — sleeping now.
+2026-03-03 22:00:08  RTC wake alarm set for 03/03/2026 09:55:00 (handle: 3192)
+2026-03-04 22:00:01  
+2026-03-04 22:00:01  ================================================
+2026-03-04 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-04
+2026-03-04 22:00:01    > wake up sleepyhead <
+2026-03-04 22:00:01  ================================================
+2026-03-04 22:00:01  
+2026-03-04 22:00:05  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 3/5/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-04 22:00:05  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 0
+2026-03-04 22:00:08  CPU=13.1656677474101 Idle=108082 Audio=0 PastBedtime=True Reasons=[CPU busy]
+2026-03-04 22:00:08  Past bedtime + idle 15 min — sleeping now.
+2026-03-04 22:00:08  RTC wake alarm set for 03/04/2026 09:55:00 (handle: 3144)
