@@ -14,7 +14,7 @@ Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen running Windo
 | **Network** | WiFi only — Intel 8265 (no RJ45) |
 | **Sleep states** | S3 (Standby) and Hibernate available |
 
-## What This Does
+## What This is Supposed To Do
 
 Hestia runs a smart sleep/wake cycle:
 
