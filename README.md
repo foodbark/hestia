@@ -13,7 +13,7 @@ Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves a
 | **RAM** | 16GB |
 | **Network** | WiFi only — Intel 8265 (no RJ45) |
 | **Sleep states** | S3 (Standby) and Hibernate available |
-| **Display** | ASUS touchscreen monitor, lid always closed |
+| **Display** | ASUS BE24ECSBT 23.8" multi-touchscreen monitor, laptop lid always closed |
 
 ## What This Does
 
