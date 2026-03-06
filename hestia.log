@@ -151,3 +151,13 @@
 2026-03-04 22:00:08  CPU=13.1656677474101 Idle=108082 Audio=0 PastBedtime=True Reasons=[CPU busy]
 2026-03-04 22:00:08  Past bedtime + idle 15 min — sleeping now.
 2026-03-04 22:00:08  RTC wake alarm set for 03/04/2026 09:55:00 (handle: 3144)
+2026-03-06 10:41:52  
+2026-03-06 10:41:52  ================================================
+2026-03-06 10:41:52    (=^.^=)  HESTIA DAILY CHECK  2026-03-06
+2026-03-06 10:41:52    > wake up sleepyhead <
+2026-03-06 10:41:52  ================================================
+2026-03-06 10:41:52  
+2026-03-06 10:41:54  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 8:59:29 AM on 3/7/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekend' scheduled task that requested waking the computer.
+2026-03-06 10:41:54  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Fixed Feature     Power Button
+2026-03-06 10:41:56  CPU=5.50508329547289 Idle=4 Audio=0 PastBedtime=False Reasons=[User active]
+2026-03-06 10:41:56  System active â€” skipping sleep.
