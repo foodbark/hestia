@@ -101,7 +101,8 @@ start C:\Windows\system32\sleepstudy-report.html
 # Recent log
 Get-Content C:\Hestia\hestia.log -Tail 30
 ```
-*Note*
+*Note:*
+
 Scripts downloaded from outside Hestia (e.g. pulled from GitHub on another machine and copied over) will be blocked by the execution policy. Run `Unblock-File -Path C:\Hestia\smart-sleep.ps1` to unblock. Do not change the system execution policy.
 
 ## Sleep/Wake Troubleshooting History
