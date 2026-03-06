@@ -32,6 +32,15 @@ Hestia runs a smart sleep/wake cycle:
 | `settings.local.json` | Claude Code permissions config. |
 | `.gitignore` | Excludes `*.log` and `*.msi` from the repo. |
 
+The following files predate the git repo and were created during troubleshooting. They are kept for reference but are not part of the active configuration:
+
+| File | Description |
+|---|---|
+| `smart-sleep1_0.ps1` | Original sleep script before troubleshooting changes broke it. |
+| `hestia-sleep-test-3-3-26.ps1` | Sets a wake timer 6 minutes out and sleeps via `SetSuspendState 0,1,0`. |
+| `hestia-sleep-test-3-3-26-1.ps1` | Sets a wake timer 10 minutes out and sleeps via `SetSuspendState 0,0,0` (S3 forced). |
+| `hestia-sleep-test-3-3-26-2.ps1` | Sets a wake timer 10 minutes out and sleeps via `SetSuspendState 0,1,0`. None of these worked — all went to hibernate regardless of parameters. |
+
 ## Scheduled Tasks
 
 Four tasks must exist for the sleep/wake cycle to work. The watchdog in `smart-sleep.ps1` will log a warning if any are missing.
