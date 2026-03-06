@@ -4,6 +4,10 @@
 # - Activity detection (CPU, idle time, audio)
 # - Auto-sleep after 15 minutes past bedtime
 #
+# Sleep mechanism: calls PowrProf.dll SetSuspendState(false, false, false)
+# which respects the power plan sleep action and enters Hybrid Sleep.
+# The rundll32 approach bypasses hybrid sleep and goes directly to hibernate.
+#
 # Scheduled tasks:
 #   HestiaSleepWeeknights  - runs this script at 10pm Sun-Thu
 #   HestiaSleepWeekend     - runs this script at midnight Fri-Sat
@@ -56,6 +60,12 @@ if (-not ($wakeTimerSetting -match "0x00000001")) {
     Write-Log "Watchdog: Wake timers are disabled!"
 }
 
+# Check hybrid sleep is enabled
+$hybridSleep = powercfg /query SCHEME_CURRENT SUB_SLEEP HYBRIDSLEEP
+if (-not ($hybridSleep -match "0x00000001")) {
+    Write-Log "Watchdog: Hybrid sleep is disabled!"
+}
+
 # Log current wake timers and last wake source
 $timers = powercfg /waketimers
 Write-Log "Watchdog: Wake timers: $($timers -join ' ')"
@@ -71,11 +81,11 @@ $day = $now.DayOfWeek
 
 switch ($day) {
     "Friday" {
-        # Stay up until midnight, wake Saturday 9am
+        # Stay up until midnight
         $bedtime = (Get-Date).Date.AddDays(1)
     }
     "Saturday" {
-        # Stay up until midnight, wake Sunday 9am
+        # Stay up until midnight
         $bedtime = (Get-Date).Date.AddDays(1)
     }
     default {
@@ -141,5 +151,22 @@ if ($pastBedtime -and $idle -ge 900) {
     Write-Log "System inactive — going to sleep now."
 }
 
-# Sleep - let Windows choose S3 or hibernate based on power settings
-rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+# -------------------------------
+# Trigger Hybrid Sleep
+#
+# SetSuspendState(false, false, false) via PowrProf.dll respects the
+# power plan sleep action and enters Hybrid Sleep, unlike the rundll32
+# approach which bypasses hybrid sleep and goes directly to hibernate.
+# -------------------------------
+Write-Log "Entering hybrid sleep..."
+
+Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+public class SleepButton {
+    [DllImport("PowrProf.dll", SetLastError=true)]
+    public static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
+}
+"@ -ErrorAction SilentlyContinue
+
+[SleepButton]::SetSuspendState($false, $false, $false)
