@@ -1,6 +1,6 @@
 # Hestia
 
-Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen running Windows 10 LTSC 2021 as a THE MONIDOOR and always-on-machine.
+Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves as the brain of **the Monidoor** — a touchscreen calendar, kitchen entertainment system, scrolling picture frame, and digital hearth of the home. Hestia is embedded in a door connected to an ASUS touchscreen monitor and runs as an always-on machine with a smart sleep/wake cycle.
 
 ## Hardware
 
@@ -13,8 +13,9 @@ Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen running Windo
 | **RAM** | 16GB |
 | **Network** | WiFi only — Intel 8265 (no RJ45) |
 | **Sleep states** | S3 (Standby) and Hibernate available |
+| **Display** | ASUS touchscreen monitor, lid always closed |
 
-## What This is Supposed To Do
+## What This Does
 
 Hestia runs a smart sleep/wake cycle:
 
@@ -51,7 +52,7 @@ Required power configuration:
 powercfg /setacvalueindex SCHEME_CURRENT SUB_SLEEP bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 1
 powercfg /setdcvalueindex SCHEME_CURRENT SUB_SLEEP bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 1
 
-# Disable automatic hibernate-after-sleep timeout (so S3 sleep persists until timer fires)
+# Disable automatic hibernate-after-sleep timeout (so hybrid sleep persists until timer fires)
 powercfg /setacvalueindex SCHEME_CURRENT SUB_SLEEP 9d7815a6-7ee4-497e-8888-515a05f02364 0
 powercfg /setdcvalueindex SCHEME_CURRENT SUB_SLEEP 9d7815a6-7ee4-497e-8888-515a05f02364 0
 
@@ -94,16 +95,25 @@ Get-Content C:\Hestia\hestia.log -Tail 30
 
 ## Sleep/Wake Troubleshooting History
 
-This has been extensively debugged. Key findings (generated under the ever watchful eye of claude and to be taken with a heavy dose of salt):
+This has been extensively debugged (generated under the ever watchful eye of Claude, and to be taken with a heavy dose of salt).
 
-- **Wake timers only work from S3 sleep**, not from hibernate. If Hestia converts from S3 to hibernate before the timer fires, the wake will not happen.
-- **`SetSuspendState 0,1,0`** is the correct call. The machine goes to S3 or hybrid sleep depending on power settings.
+### Background
+
+The sleep/wake cycle ran perfectly on this same hardware under Linux using systemd and a bash script (`smart-suspend.sh`) that wrote directly to the hardware RTC before suspending. Linux has direct, clean access to `/sys/class/rtc/rtc0/wakealarm` which lets you set a hardware wake alarm that survives sleep and hibernate. The full story of the Linux setup — and the odyssey through Fedora, Ubuntu, and Tiny11 that eventually landed back on Windows 10 LTSC — is documented at [foodbark.io](https://foodbark.io/posts/the-big-sleep-and-wake-cycle/).
+
+Windows does not expose direct RTC access the same way, which is the root cause of all the complexity below.
+
+### Key findings:
+
+- **Wake timers only work from Hybrid Sleep (S3)**, not from hibernate. If Hestia enters full hibernate before the timer fires, the wake will not happen.
+- **`rundll32 SetSuspendState 0,1,0`** bypasses hybrid sleep and goes directly to hibernate on this machine — do not use this approach.
+- **`PowrProf.dll SetSuspendState(false, false, false)`** respects the power plan sleep action and correctly enters Hybrid Sleep. This is what `smart-sleep.ps1` uses.
 - **Hybrid sleep** writes a hibernate file as a safety net but keeps the machine in S3, allowing wake timers to fire.
 - **The S4 doze timeout** (automatic conversion from S3 to hibernate after N minutes) must be set to 0 (disabled) or the timer will be unreachable by morning.
 - **WaitableTimer API** (`CreateWaitableTimer`/`SetWaitableTimer`) does NOT write to hardware RTC registers — the timer lives in kernel memory and is lost when the process sleeps. Do not use this approach.
 - **Wake-on-WiFi (WoWLAN)** was investigated and abandoned. The Intel 8265 adapter's "Allow this device to wake the computer" option is greyed out in Device Manager on this hardware/driver combination.
 - The scheduled wake tasks need **"Wake the computer to run this task"** checked under Conditions. `powercfg /waketimers` should show the timer registered before sleep.
-- Confirmed working dates: **Feb 12, 2026** (`HestiaWakeWeekdays`) and **Feb 21, 2026** (`HestiaWakeWeekend`).
+- Confirmed working dates: **Feb 12, 2026** (`HestiaWakeWeekdays`), **Feb 21, 2026** (`HestiaWakeWeekend`), **Mar 6, 2026** (`HestiaWakeWeekdays`).
 
 ## Logging
 
