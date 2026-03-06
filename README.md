@@ -29,6 +29,7 @@ Hestia runs a smart sleep/wake cycle:
 | `smart-sleep.ps1` | Main sleep script. Checks activity, logs state, and puts Hestia to sleep. Run nightly by scheduled tasks. |
 | `wake.ps1` | Wake stub. Does nothing — exists only so the scheduled wake tasks have something to run. The act of the task firing is what wakes the machine. |
 | `hestia-reset.ps1` | Diagnostic and reset script. Gathers full system power state, restores tasks and power settings to known-good configuration. Run manually if wake behavior breaks. |
+| `output.txt` | Miscellaneous terminal output captured during troubleshooting. |
 | `settings.local.json` | Claude Code permissions config. |
 | `.gitignore` | Excludes `*.log` and `*.msi` from the repo. |
 
@@ -80,7 +81,7 @@ Run `hestia-reset.ps1` as admin. It will:
 2. Restore default power schemes
 3. Re-enable hibernate and wake timers
 4. Recreate all four scheduled tasks
-5. Clean up `smart-sleep.ps1`
+5. Verify smart-sleep.ps1 is the correct version (warns in log if WaitableTimer or rundll32 detected)`
 6. Set a test wake task 10 minutes out and hibernate
 
 Then check `C:\Hestia\hestia-reset.log` for the diagnostic output.
