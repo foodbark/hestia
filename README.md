@@ -83,9 +83,6 @@ Run `hestia-reset.ps1` as admin. It will:
 5. Clean up `smart-sleep.ps1`
 6. Set a test wake task 10 minutes out and hibernate
 
-*Note*
-Scripts downloaded from outside Hestia (e.g. pulled from GitHub on another machine and copied over) will be blocked by the execution policy. Run `Unblock-File -Path C:\Hestia\smart-sleep.ps1` to unblock. Do not change the system execution policy.
-
 Then check `C:\Hestia\hestia-reset.log` for the diagnostic output.
 
 Key commands for manual diagnosis:
@@ -104,6 +101,8 @@ start C:\Windows\system32\sleepstudy-report.html
 # Recent log
 Get-Content C:\Hestia\hestia.log -Tail 30
 ```
+*Note*
+Scripts downloaded from outside Hestia (e.g. pulled from GitHub on another machine and copied over) will be blocked by the execution policy. Run `Unblock-File -Path C:\Hestia\smart-sleep.ps1` to unblock. Do not change the system execution policy.
 
 ## Sleep/Wake Troubleshooting History
 
