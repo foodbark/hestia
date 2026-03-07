@@ -3,6 +3,14 @@
 # - Log rotation
 # - Watchdog for scheduled tasks and power settings
 # - Auto-sleep after 15 minutes past bedtime
+#
+# Usage:
+#   smart-sleep.ps1 -Schedule weeknight   (called by HestiaSleepWeeknights, bedtime 10pm)
+#   smart-sleep.ps1 -Schedule weekend     (called by HestiaSleepWeekend, bedtime 11:59pm)
+
+param(
+    [string]$Schedule = "weeknight"  # "weeknight" or "weekend"
+)
 
 # -------------------------------
 # Logging + Rotation
@@ -20,7 +28,6 @@ try {
         Write-Log "Log rotated: $archive"
     }
 } catch {
-    # If rotation fails, continue anyway - don't let a big log file prevent sleep
     Write-Log "WARNING: Log rotation failed: $_"
 }
 
@@ -101,30 +108,25 @@ try {
 }
 
 # -------------------------------
-# Determine bedtime and wake time
+# Determine bedtime
 # -------------------------------
+# Bedtime is determined by which scheduled task invoked this script, not by
+# deriving it from the current time. This avoids edge cases where the task
+# fires at midnight and the day-of-week has already rolled over.
+#
+#   weeknight: HestiaSleepWeeknights fires at 10pm — bedtime is 10pm
+#   weekend:   HestiaSleepWeekend fires at midnight — bedtime is 11:59pm
+#              (so $pastBedtime is always true when the task runs, even if
+#               it is now technically the next day)
+
 $now = Get-Date
-$day = $now.DayOfWeek
-switch ($day) {
-    "Friday" {
-        $bedtime = (Get-Date).Date.AddDays(1)
-        $wakeTime = (Get-Date).Date.AddDays(1).AddHours(9)  # Saturday 9am
-    }
-    "Saturday" {
-        $bedtime = (Get-Date).Date.AddDays(1)
-        $wakeTime = (Get-Date).Date.AddDays(1).AddHours(9)  # Sunday 9am
-    }
-    "Sunday" {
-        $bedtime = (Get-Date).Date.AddHours(22)
-        $wakeTime = (Get-Date).Date.AddDays(1).AddHours(7)  # Monday 7am
-    }
-    default {
-        $bedtime = (Get-Date).Date.AddHours(22)
-        $wakeTime = (Get-Date).Date.AddDays(1).AddHours(7)  # Weekday 7am
-    }
+if ($Schedule -eq "weekend") {
+    $bedtime = (Get-Date).Date.AddHours(23).AddMinutes(59)
+} else {
+    $bedtime = (Get-Date).Date.AddHours(22)
 }
 $pastBedtime = $now -gt $bedtime
-Write-Log "Day=$day Bedtime=$bedtime PastBedtime=$pastBedtime"
+Write-Log "Schedule=$Schedule Bedtime=$bedtime PastBedtime=$pastBedtime"
 
 # -------------------------------
 # Activity detection
@@ -171,7 +173,6 @@ $audio = 0
 try {
     $audio = (Get-AudioDevice -Playback).Volume
 } catch {
-    # AudioDevice module not present or no playback device - treat as silent
     $audio = 0
 }
 
