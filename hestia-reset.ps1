@@ -185,23 +185,41 @@ Write-Log "--- Creating wake stub ---"
 Write-Log "  C:\Hestia\wake.ps1 created"
 
 # -------------------------------
-# SECTION 9: Recreate wake tasks
+# SECTION 9: Recreate all tasks
 # -------------------------------
+$principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+
 Write-Log ""
-Write-Log "--- Removing old wake tasks if present ---"
-foreach ($t in @("HestiaWakeWeekdays","HestiaWakeWeekend","HestiaSetRTCWake","HestiaWakeTest")) {
+Write-Log "--- Removing old tasks if present ---"
+foreach ($t in @("HestiaSleepWeeknights","HestiaSleepWeekend","HestiaWakeWeekdays","HestiaWakeWeekend","HestiaSetRTCWake","HestiaWakeTest")) {
     if (Get-ScheduledTask -TaskName $t -ErrorAction SilentlyContinue) {
         Unregister-ScheduledTask -TaskName $t -Confirm:$false
         Write-Log "  Removed: $t"
     }
 }
 
+# Sleep tasks
+Write-Log ""
+Write-Log "--- Creating HestiaSleepWeeknights (10pm Sun-Thu) ---"
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NonInteractive -WindowStyle Hidden -File C:\Hestia\smart-sleep.ps1 -Schedule weeknight"
+$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday,Monday,Tuesday,Wednesday,Thursday -At "10:00PM"
+$settings = New-ScheduledTaskSettingsSet
+Register-ScheduledTask -TaskName "HestiaSleepWeeknights" -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
+Write-Log "  Created"
+
+Write-Log "--- Creating HestiaSleepWeekend (11:59pm Fri-Sat) ---"
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NonInteractive -WindowStyle Hidden -File C:\Hestia\smart-sleep.ps1 -Schedule weekend"
+$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Friday,Saturday -At "11:59PM"
+$settings = New-ScheduledTaskSettingsSet
+Register-ScheduledTask -TaskName "HestiaSleepWeekend" -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
+Write-Log "  Created"
+
+# Wake tasks
 Write-Log ""
 Write-Log "--- Creating HestiaWakeWeekdays (7am Mon-Fri) ---"
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NonInteractive -WindowStyle Hidden -File C:\Hestia\wake.ps1"
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday -At "7:00AM"
 $settings = New-ScheduledTaskSettingsSet -WakeToRun
-$principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
 Register-ScheduledTask -TaskName "HestiaWakeWeekdays" -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Log "  Created"
 
@@ -220,16 +238,19 @@ Write-Log "--- Deploying smart-sleep.ps1 ---"
 Unblock-File -Path "C:\Hestia\smart-sleep.ps1" -ErrorAction SilentlyContinue
 Write-Log "  Unblocked"
 
-# Verify the deployed script does not contain dead WaitableTimer/rundll32 code
+# Verify the deployed script looks correct
 $sleepScript = Get-Content "C:\Hestia\smart-sleep.ps1" -Raw
 if ($sleepScript -match "WaitableTimer") {
     Write-Log "  WARNING: smart-sleep.ps1 contains WaitableTimer code - replace with clean version from repo"
 }
-if ($sleepScript -match "rundll32") {
-    Write-Log "  WARNING: smart-sleep.ps1 contains rundll32 sleep call - replace with clean version from repo"
+if ($sleepScript -match "rundll32.exe powrprof") {
+    Write-Log "  WARNING: smart-sleep.ps1 contains rundll32 as primary sleep call - replace with clean version from repo"
 }
 if ($sleepScript -notmatch "PowrProf") {
     Write-Log "  WARNING: smart-sleep.ps1 does not use PowrProf.dll - replace with clean version from repo"
+}
+if ($sleepScript -notmatch "param") {
+    Write-Log "  WARNING: smart-sleep.ps1 is missing -Schedule parameter - replace with clean version from repo"
 }
 
 Write-Log "  smart-sleep.ps1 check complete"
