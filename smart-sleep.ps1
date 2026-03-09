@@ -2,7 +2,7 @@
 # - Reason codes
 # - Log rotation
 # - Watchdog for scheduled tasks and power settings
-# - Auto-sleep after 15 minutes past bedtime
+# - Loops every 15 minutes until system is idle, then sleeps
 #
 # Usage:
 #   smart-sleep.ps1 -Schedule weeknight   (called by HestiaSleepWeeknights, bedtime 10pm)
@@ -31,6 +31,44 @@ public static class IdleTime {
         lii.cbSize = (uint)Marshal.SizeOf(lii);
         GetLastInputInfo(ref lii);
         return ((uint)Environment.TickCount - lii.dwTime) / 1000;
+    }
+}
+"@
+
+$audioTypeDef = @"
+using System;
+using System.Runtime.InteropServices;
+[Guid("C02216F6-8C67-4B5B-9D00-D008E73E0064")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+interface IAudioMeterInformation {
+    int GetPeakValue(out float pfPeak);
+}
+[Guid("D666063F-1587-4E43-81F1-B948E807363F")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+interface IMMDevice {
+    int Activate(ref Guid iid, int dwClsCtx, IntPtr pActivationParams, [MarshalAs(UnmanagedType.IUnknown)] out object ppInterface);
+}
+[Guid("A95664D2-9614-4F35-A746-DE8DB63617E6")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+interface IMMDeviceEnumerator {
+    int EnumAudioEndpoints(int dataFlow, int dwStateMask, out IntPtr ppDevices);
+    int GetDefaultAudioEndpoint(int dataFlow, int role, out IMMDevice ppEndpoint);
+}
+[ComImport, Guid("BCDE0395-E52F-467C-8E3D-C4579291692E")]
+class MMDeviceEnumeratorClass { }
+public static class AudioChecker {
+    public static float GetPeakValue() {
+        var enumeratorGuid = typeof(MMDeviceEnumeratorClass).GUID;
+        var enumerator = (IMMDeviceEnumerator)Activator.CreateInstance(typeof(MMDeviceEnumeratorClass));
+        IMMDevice device;
+        enumerator.GetDefaultAudioEndpoint(0, 1, out device); // eRender, eMultimedia
+        var iidMeter = new Guid("C02216F6-8C67-4B5B-9D00-D008E73E0064");
+        object meterObj;
+        device.Activate(ref iidMeter, 23, IntPtr.Zero, out meterObj); // CLSCTX_ALL = 23
+        var meter = (IAudioMeterInformation)meterObj;
+        float peak;
+        meter.GetPeakValue(out peak);
+        return peak;
     }
 }
 "@
@@ -64,10 +102,8 @@ try {
 }
 
 # -------------------------------
-# Watchdog
+# Watchdog - runs once at startup
 # -------------------------------
-
-# Daily ASCII banner
 $dateStr = (Get-Date).ToString("yyyy-MM-dd")
 Write-Log ""
 Write-Log "================================================"
@@ -88,7 +124,6 @@ foreach ($task in $requiredTasks) {
     }
 }
 
-# Check hibernate is enabled
 try {
     $hibEnabled = (powercfg /a) -match "Hibernate"
     if (-not $hibEnabled) { Write-Log "Watchdog: Hibernate is disabled!" }
@@ -96,7 +131,6 @@ try {
     Write-Log "Watchdog: Could not check hibernate state: $_"
 }
 
-# Check wake timers are enabled
 try {
     $wakeTimers = (powercfg /query SCHEME_CURRENT SUB_SLEEP bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d) -match "0x00000001"
     if (-not $wakeTimers) { Write-Log "Watchdog: Wake timers are disabled!" }
@@ -104,7 +138,6 @@ try {
     Write-Log "Watchdog: Could not check wake timer setting: $_"
 }
 
-# Check hybrid sleep is enabled (required for wake timers to fire)
 try {
     $hybridSleep = (powercfg /query SCHEME_CURRENT SUB_SLEEP HYBRIDSLEEP) -match "0x00000001"
     if (-not $hybridSleep) { Write-Log "Watchdog: Hybrid sleep is disabled!" }
@@ -112,7 +145,6 @@ try {
     Write-Log "Watchdog: Could not check hybrid sleep setting: $_"
 }
 
-# Check S4 doze timeout is 0 (if non-zero, machine falls to full hibernate before wake timer fires)
 try {
     $s4Query = powercfg /query SCHEME_CURRENT SUB_SLEEP 9d7815a6-7ee4-497e-8888-515a05f02364
     $s4AC = ($s4Query | Select-String "Current AC Power Setting Index: 0x00000000")
@@ -123,7 +155,6 @@ try {
     Write-Log "Watchdog: Could not check S4 doze timeout: $_"
 }
 
-# Log current wake timers
 try {
     $timers = powercfg /waketimers
     Write-Log "Watchdog: Wake timers: $($timers -join ' ')"
@@ -131,7 +162,6 @@ try {
     Write-Log "Watchdog: Could not read wake timers: $_"
 }
 
-# Log last wake source
 try {
     $lastWake = powercfg /lastwake
     Write-Log "Watchdog: Last wake: $($lastWake -join ' ')"
@@ -144,7 +174,7 @@ try {
 # -------------------------------
 # Bedtime is determined by which scheduled task invoked this script, not by
 # deriving it from the current time. This avoids edge cases where the task
-# fires at midnight and the day-of-week has already rolled over.
+# fires near midnight and the day-of-week has already rolled over.
 #
 #   weeknight: HestiaSleepWeeknights fires at 10pm - bedtime is 10pm
 #   weekend:   HestiaSleepWeekend fires at 11:59pm - bedtime is 11:59pm
@@ -158,77 +188,89 @@ if ($Schedule -eq "weekend") {
 $pastBedtime = $now -gt $bedtime
 Write-Log "Schedule=$Schedule Bedtime=$bedtime PastBedtime=$pastBedtime"
 
-# -------------------------------
-# Activity detection
-# -------------------------------
-$cpu = 0
-try {
-    $cpu = (Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue
-} catch {
-    Write-Log "WARNING: Could not read CPU counter: $_"
-}
-
-# NOTE: GetLastInputInfo only sees input from the interactive desktop session.
-# When running as SYSTEM via scheduled task, idle time reflects the last real
-# user input and may be days old. $idleActive is retained for logging but is
-# not a reliable signal in this context.
-$idle = 99999
+# Load types once before the loop
 try {
     Add-Type -TypeDefinition $idleTypeDef -ErrorAction SilentlyContinue
-    $idle = [IdleTime]::GetIdleTime()
 } catch {
-    Write-Log "WARNING: Could not read idle time: $_"
+    Write-Log "WARNING: Could not load IdleTime type: $_"
 }
 
-$audio = 0
 try {
-    $audio = (Get-AudioDevice -Playback).Volume
+    Add-Type -TypeDefinition $audioTypeDef -ErrorAction SilentlyContinue
 } catch {
-    $audio = 0
+    Write-Log "WARNING: Could not load AudioChecker type: $_"
 }
 
-$cpuActive = $cpu -gt 10
-$idleActive = $idle -lt 300
-$audioActive = $audio -gt 0
-
-$reasons = @()
-if ($cpuActive)   { $reasons += "CPU busy" }
-if ($idleActive)  { $reasons += "User active" }
-if ($audioActive) { $reasons += "Audio playing" }
-
-Write-Log "CPU=$cpu Idle=$idle Audio=$audio PastBedtime=$pastBedtime Reasons=[$($reasons -join ', ')]"
-
-# -------------------------------
-# Should we sleep?
-# -------------------------------
-$shouldSleep = $false
-
-if ($pastBedtime -and $idle -ge 900) {
-    Write-Log "Past bedtime + idle 15 min - sleeping now."
-    $shouldSleep = $true
-} elseif ($reasons.Count -gt 0) {
-    Write-Log "System active - skipping sleep."
-    exit 0
-} else {
-    Write-Log "System inactive - going to sleep now."
-    $shouldSleep = $true
+try {
+    Add-Type -TypeDefinition $sleepTypeDef -ErrorAction SilentlyContinue
+} catch {
+    Write-Log "WARNING: Could not load SleepButton type: $_"
 }
 
 # -------------------------------
-# Sleep
+# Sleep loop - checks every 15 minutes until idle, then sleeps
+# CPU threshold raised to 25% so script polling does not trip it
+# Audio checked via IAudioMeterInformation peak value - works with
+# bluetooth and any audio device, no external module required
 # -------------------------------
-if ($shouldSleep) {
-    # Use PowrProf.dll SetSuspendState($false,$false,$false) to enter hybrid sleep (S3 + hiberfil).
-    # rundll32 SetSuspendState 0,1,0 goes directly to S4 hibernate on this machine,
-    # which loses wake timers. PowrProf.dll respects the power plan and enters hybrid
-    # sleep, from which scheduled task wake timers fire correctly.
+while ($true) {
+    $cpu = 0
     try {
-        Add-Type -TypeDefinition $sleepTypeDef -ErrorAction SilentlyContinue
-        Write-Log "Entering hybrid sleep."
-        [SleepButton]::SetSuspendState($false, $false, $false)
+        $cpu = (Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue
     } catch {
-        Write-Log "ERROR: Failed to enter hybrid sleep: $_"
-        Write-Log "Attempting fallback sleep via rundll32..."
-        rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+        Write-Log "WARNING: Could not read CPU counter: $_"
     }
+
+    # NOTE: GetLastInputInfo measures user input (keyboard/mouse/touch), not CPU load.
+    # When running as SYSTEM via scheduled task, this reflects last real user
+    # input and may be unreliable. Idle defaults to 99999 on error so it never
+    # blocks sleep.
+    $idle = 99999
+    try {
+        $idle = [IdleTime]::GetIdleTime()
+    } catch {
+        Write-Log "WARNING: Could not read idle time: $_"
+    }
+
+    # Peak value > 0.0 means audio is actively rendering on the default playback device.
+    # This works regardless of output device (bluetooth, HDMI, built-in speakers).
+    # Defaults to 0 on error so a broken audio check never blocks sleep.
+    $audioPeak = 0
+    try {
+        $audioPeak = [AudioChecker]::GetPeakValue()
+    } catch {
+        Write-Log "WARNING: Could not read audio peak: $_"
+    }
+
+    $cpuActive   = $cpu -gt 25
+    $idleActive  = $idle -lt 900
+    $audioActive = $audioPeak -gt 0
+
+    $reasons = @()
+    if ($cpuActive)   { $reasons += "CPU busy" }
+    if ($idleActive)  { $reasons += "User active" }
+    if ($audioActive) { $reasons += "Audio playing" }
+
+    Write-Log "CPU=$cpu Idle=$idle AudioPeak=$audioPeak PastBedtime=$pastBedtime Reasons=[$($reasons -join ', ')]"
+
+    if ($reasons.Count -eq 0) {
+        Write-Log "System inactive - going to sleep."
+
+        # Use PowrProf.dll SetSuspendState($false,$false,$false) to enter hybrid sleep.
+        # rundll32 goes directly to S4 hibernate on this machine, losing wake timers.
+        # PowrProf.dll respects the power plan and enters hybrid sleep, from which
+        # scheduled task wake timers fire correctly.
+        try {
+            Write-Log "Entering hybrid sleep."
+            [SleepButton]::SetSuspendState($false, $false, $false)
+        } catch {
+            Write-Log "ERROR: Failed to enter hybrid sleep: $_"
+            Write-Log "Attempting fallback sleep via rundll32..."
+            rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+        }
+        break
+    }
+
+    Write-Log "System active - waiting 15 minutes before retry."
+    Start-Sleep -Seconds 900
 }
