@@ -13,6 +13,38 @@ param(
 )
 
 # -------------------------------
+# Type definitions - must be at top level, here-strings cannot be indented
+# -------------------------------
+$idleTypeDef = @"
+using System;
+using System.Runtime.InteropServices;
+public static class IdleTime {
+    [DllImport("user32.dll")]
+    static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+    [StructLayout(LayoutKind.Sequential)]
+    public struct LASTINPUTINFO {
+        public uint cbSize;
+        public uint dwTime;
+    }
+    public static uint GetIdleTime() {
+        LASTINPUTINFO lii = new LASTINPUTINFO();
+        lii.cbSize = (uint)Marshal.SizeOf(lii);
+        GetLastInputInfo(ref lii);
+        return ((uint)Environment.TickCount - lii.dwTime) / 1000;
+    }
+}
+"@
+
+$sleepTypeDef = @"
+using System;
+using System.Runtime.InteropServices;
+public class SleepButton {
+    [DllImport("PowrProf.dll", SetLastError=true)]
+    public static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
+}
+"@
+
+# -------------------------------
 # Logging + Rotation
 # -------------------------------
 $logFile = "C:\Hestia\hestia.log"
@@ -114,10 +146,8 @@ try {
 # deriving it from the current time. This avoids edge cases where the task
 # fires at midnight and the day-of-week has already rolled over.
 #
-#   weeknight: HestiaSleepWeeknights fires at 10pm — bedtime is 10pm
-#   weekend:   HestiaSleepWeekend fires at midnight — bedtime is 11:59pm
-#              (so $pastBedtime is always true when the task runs, even if
-#               it is now technically the next day)
+#   weeknight: HestiaSleepWeeknights fires at 10pm - bedtime is 10pm
+#   weekend:   HestiaSleepWeekend fires at 11:59pm - bedtime is 11:59pm
 
 $now = Get-Date
 if ($Schedule -eq "weekend") {
@@ -144,25 +174,6 @@ try {
 # not a reliable signal in this context.
 $idle = 99999
 try {
-    $idleTypeDef = @"
-using System;
-using System.Runtime.InteropServices;
-public static class IdleTime {
-    [DllImport("user32.dll")]
-    static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
-    [StructLayout(LayoutKind.Sequential)]
-    public struct LASTINPUTINFO {
-        public uint cbSize;
-        public uint dwTime;
-    }
-    public static uint GetIdleTime() {
-        LASTINPUTINFO lii = new LASTINPUTINFO();
-        lii.cbSize = (uint)Marshal.SizeOf(lii);
-        GetLastInputInfo(ref lii);
-        return ((uint)Environment.TickCount - lii.dwTime) / 1000;
-    }
-}
-"@
     Add-Type -TypeDefinition $idleTypeDef -ErrorAction SilentlyContinue
     $idle = [IdleTime]::GetIdleTime()
 } catch {
@@ -193,13 +204,13 @@ Write-Log "CPU=$cpu Idle=$idle Audio=$audio PastBedtime=$pastBedtime Reasons=[$(
 $shouldSleep = $false
 
 if ($pastBedtime -and $idle -ge 900) {
-    Write-Log "Past bedtime + idle 15 min — sleeping now."
+    Write-Log "Past bedtime + idle 15 min - sleeping now."
     $shouldSleep = $true
 } elseif ($reasons.Count -gt 0) {
-    Write-Log "System active — skipping sleep."
+    Write-Log "System active - skipping sleep."
     exit 0
 } else {
-    Write-Log "System inactive — going to sleep now."
+    Write-Log "System inactive - going to sleep now."
     $shouldSleep = $true
 }
 
@@ -212,14 +223,6 @@ if ($shouldSleep) {
     # which loses wake timers. PowrProf.dll respects the power plan and enters hybrid
     # sleep, from which scheduled task wake timers fire correctly.
     try {
-        $sleepTypeDef = @"
-using System;
-using System.Runtime.InteropServices;
-public class SleepButton {
-    [DllImport("PowrProf.dll", SetLastError=true)]
-    public static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
-}
-"@
         Add-Type -TypeDefinition $sleepTypeDef -ErrorAction SilentlyContinue
         Write-Log "Entering hybrid sleep."
         [SleepButton]::SetSuspendState($false, $false, $false)
