@@ -172,3 +172,14 @@
 2026-03-07 10:34:43  Day=Saturday Bedtime=03/08/2026 00:00:00 PastBedtime=False
 2026-03-07 10:34:45  CPU=35.5470504682587 Idle=5 Audio=0 PastBedtime=False Reasons=[CPU busy, User active]
 2026-03-07 10:34:45  System active — skipping sleep.
+2026-03-09 11:18:21  
+2026-03-09 11:18:21  ================================================
+2026-03-09 11:18:21    (=^.^=)  HESTIA DAILY CHECK  2026-03-09
+2026-03-09 11:18:21    > wake up sleepyhead <
+2026-03-09 11:18:21  ================================================
+2026-03-09 11:18:21  
+2026-03-09 11:18:24  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 3/10/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-09 11:18:24  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-09 11:18:24  Schedule=weeknight Bedtime=03/09/2026 22:00:00 PastBedtime=False
+2026-03-09 11:18:26  CPU=0 Idle=5 Audio=0 PastBedtime=False Reasons=[User active]
+2026-03-09 11:18:26  System active - skipping sleep.
