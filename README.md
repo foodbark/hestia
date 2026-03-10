@@ -29,7 +29,10 @@ Hestia runs a smart sleep/wake cycle:
 | `smart-sleep.ps1` | Main sleep script. Checks activity, logs state, and puts Hestia to sleep. Loops every 15 minutes until idle. Run nightly by scheduled tasks. |
 | `wake.ps1` | Wake stub. Does nothing — exists only so the scheduled wake tasks have something to run. The act of the task firing is what wakes the machine. |
 | `hestia-reset.ps1` | Diagnostic and reset script. Gathers full system power state, restores tasks and power settings to known-good configuration. Run manually if wake behavior breaks. |
+| `hestia.log` | Terminal output from smart-sleep.ps1 captured for troubleshooting. |
+| `hestia-reset.log` | Terminal output from hestia-reset.ps1 captured to confrim resets. |
 | `output.txt` | Miscellaneous terminal output captured during troubleshooting. |
+| `sleepstudy-report.html' | Most recent sleepstudy report captured for troubleshooting. |
 | `settings.local.json` | Claude Code permissions config. |
 | `.gitignore` | Excludes `.claude` and `*.msi` from the repo. |
 
