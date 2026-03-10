@@ -19,14 +19,14 @@ Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves a
 
 Hestia runs a smart sleep/wake cycle:
 
-- **Sleeps** automatically at 10pm on weeknights and midnight on weekends, based on activity detection (CPU, idle time, audio)
+- **Sleeps** automatically at 10pm on weeknights (Sun–Thu) and 11:59pm on weekends (Fri–Sat), based on activity detection (CPU, idle time, audio). If the system is active at bedtime the script loops and retries every 15 minutes until idle.
 - **Wakes** automatically at 7am on weekdays and 9am on weekends via Windows Task Scheduler wake timers
 
 ## Files
 
 | File | Description |
 |---|---|
-| `smart-sleep.ps1` | Main sleep script. Checks activity, logs state, and puts Hestia to sleep. Run nightly by scheduled tasks. |
+| `smart-sleep.ps1` | Main sleep script. Checks activity, logs state, and puts Hestia to sleep. Loops every 15 minutes until idle. Run nightly by scheduled tasks. |
 | `wake.ps1` | Wake stub. Does nothing — exists only so the scheduled wake tasks have something to run. The act of the task firing is what wakes the machine. |
 | `hestia-reset.ps1` | Diagnostic and reset script. Gathers full system power state, restores tasks and power settings to known-good configuration. Run manually if wake behavior breaks. |
 | `output.txt` | Miscellaneous terminal output captured during troubleshooting. |
@@ -48,10 +48,12 @@ Four tasks must exist for the sleep/wake cycle to work. The watchdog in `smart-s
 
 | Task | Schedule | Action |
 |---|---|---|
-| `HestiaSleepWeeknights` | 10pm Sun–Thu | Runs `smart-sleep.ps1` |
-| `HestiaSleepWeekend` | Midnight Fri–Sat | Runs `smart-sleep.ps1` |
+| `HestiaSleepWeeknights` | 10pm Sun–Thu | Runs `smart-sleep.ps1 -Schedule weeknight` |
+| `HestiaSleepWeekend` | 11:59pm Fri–Sat | Runs `smart-sleep.ps1 -Schedule weekend` |
 | `HestiaWakeWeekdays` | 7am Mon–Fri | Runs `wake.ps1` with **Wake to run** enabled |
 | `HestiaWakeWeekend` | 9am Sat–Sun | Runs `wake.ps1` with **Wake to run** enabled |
+
+Both sleep tasks must be created with `-ExecutionPolicy Bypass` in the powershell.exe arguments. SYSTEM has a Restricted execution policy by default and will fail with `0x80070001` without it.
 
 ## Power Settings
 
@@ -80,8 +82,8 @@ Run `hestia-reset.ps1` as admin. It will:
 1. Log full system diagnostics (power states, wake history, scheduled tasks, recent updates)
 2. Restore default power schemes
 3. Re-enable hibernate and wake timers
-4. Recreate all four scheduled tasks
-5. Verify smart-sleep.ps1 is the correct version (warns in log if WaitableTimer or rundll32 detected)`
+4. Recreate all four scheduled tasks with correct arguments and triggers
+5. Verify `smart-sleep.ps1` is the correct version (warns in log if WaitableTimer, rundll32, or missing `-Schedule` parameter detected)
 6. Set a test wake task 10 minutes out and hibernate
 
 Then check `C:\Hestia\hestia-reset.log` for the diagnostic output.
@@ -102,6 +104,7 @@ start C:\Windows\system32\sleepstudy-report.html
 # Recent log
 Get-Content C:\Hestia\hestia.log -Tail 30
 ```
+
 *Note:*
 
 Scripts downloaded from outside Hestia (e.g. pulled from GitHub on another machine and copied over) will be blocked by the execution policy. Run `Unblock-File -Path C:\Hestia\smart-sleep.ps1` to unblock. Do not change the system execution policy.
@@ -126,7 +129,11 @@ Windows does not expose direct RTC access the same way, which is the root cause 
 - **WaitableTimer API** (`CreateWaitableTimer`/`SetWaitableTimer`) does NOT write to hardware RTC registers — the timer lives in kernel memory and is lost when the process sleeps. Do not use this approach.
 - **Wake-on-WiFi (WoWLAN)** was investigated and abandoned. The Intel 8265 adapter's "Allow this device to wake the computer" option is greyed out in Device Manager on this hardware/driver combination.
 - The scheduled wake tasks need **"Wake the computer to run this task"** checked under Conditions. `powercfg /waketimers` should show the timer registered before sleep.
-- Confirmed working dates: **Feb 12, 2026** (`HestiaWakeWeekdays`), **Feb 21, 2026** (`HestiaWakeWeekend`), **Mar 6, 2026** (`HestiaWakeWeekdays`).
+- **Execution policy**: Scheduled tasks run as SYSTEM, which has a Restricted execution policy by default. Sleep tasks must include `-ExecutionPolicy Bypass` in the powershell.exe arguments or they will fail silently with return code `0x80070001`. Do not change the system-wide execution policy — the bypass flag applies only to the task's process.
+- **Here-strings in PowerShell**: `@"` must be the last character on its line and `"@` must be alone at the very start of a line with no leading spaces. Indented here-strings inside `if`/`try` blocks cause parse errors and silent script failures. Type definitions using here-strings should be assigned at the top level of the script before any other code.
+- **`-Schedule` parameter**: `smart-sleep.ps1` takes `-Schedule weeknight` or `-Schedule weekend` to set the correct bedtime. Without this parameter the script defaults to weeknight. The weekend task previously fired at midnight which caused a day-of-week rollover bug where `$pastBedtime` was always false.
+- **Audio detection**: Active audio playback is detected via `IAudioMeterInformation::GetPeakValue()` COM interop — no external module required, works as SYSTEM, works with any output device including Bluetooth.
+- Confirmed working dates: **Feb 12, 2026** (`HestiaWakeWeekdays`), **Feb 21, 2026** (`HestiaWakeWeekend`), **Mar 6, 2026** (`HestiaWakeWeekdays`), **Mar 10, 2026** (`HestiaWakeWeekdays`).
 
 ## Logging
 
@@ -134,5 +141,6 @@ Windows does not expose direct RTC access the same way, which is the root cause 
 
 - ASCII banner with date
 - Watchdog status (missing tasks, disabled wake timers, current timer registration, last wake source)
-- CPU usage, idle time, audio state
+- CPU usage, idle time, audio peak value
 - Sleep decision and reason
+- On retry: "System active - waiting 15 minutes before retry"
