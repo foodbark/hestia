@@ -201,14 +201,14 @@ foreach ($t in @("HestiaSleepWeeknights","HestiaSleepWeekend","HestiaWakeWeekday
 # Sleep tasks
 Write-Log ""
 Write-Log "--- Creating HestiaSleepWeeknights (10pm Sun-Thu) ---"
-$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NonInteractive -WindowStyle Hidden -File C:\Hestia\smart-sleep.ps1 -Schedule weeknight"
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File C:\Hestia\smart-sleep.ps1 -Schedule weeknight"
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday,Monday,Tuesday,Wednesday,Thursday -At "10:00PM"
 $settings = New-ScheduledTaskSettingsSet
 Register-ScheduledTask -TaskName "HestiaSleepWeeknights" -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Log "  Created"
 
 Write-Log "--- Creating HestiaSleepWeekend (11:59pm Fri-Sat) ---"
-$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NonInteractive -WindowStyle Hidden -File C:\Hestia\smart-sleep.ps1 -Schedule weekend"
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File C:\Hestia\smart-sleep.ps1 -Schedule weekend"
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Friday,Saturday -At "11:59PM"
 $settings = New-ScheduledTaskSettingsSet
 Register-ScheduledTask -TaskName "HestiaSleepWeekend" -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
