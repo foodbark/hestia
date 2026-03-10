@@ -1,5 +1,4 @@
 # Smart Sleep Script for Hestia (Windows 10)
-# - Reason codes
 # - Log rotation
 # - Watchdog for scheduled tasks and power settings
 # - Loops every 15 minutes until system is idle, then sleeps
@@ -58,7 +57,6 @@ interface IMMDeviceEnumerator {
 class MMDeviceEnumeratorClass { }
 public static class AudioChecker {
     public static float GetPeakValue() {
-        var enumeratorGuid = typeof(MMDeviceEnumeratorClass).GUID;
         var enumerator = (IMMDeviceEnumerator)Activator.CreateInstance(typeof(MMDeviceEnumeratorClass));
         IMMDevice device;
         enumerator.GetDefaultAudioEndpoint(0, 1, out device); // eRender, eMultimedia
