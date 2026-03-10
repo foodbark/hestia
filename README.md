@@ -31,7 +31,7 @@ Hestia runs a smart sleep/wake cycle:
 | `hestia-reset.ps1` | Diagnostic and reset script. Gathers full system power state, restores tasks and power settings to known-good configuration. Run manually if wake behavior breaks. |
 | `output.txt` | Miscellaneous terminal output captured during troubleshooting. |
 | `settings.local.json` | Claude Code permissions config. |
-| `.gitignore` | Excludes `*.log` and `*.msi` from the repo. |
+| `.gitignore` | Excludes `.claude` and `*.msi` from the repo. |
 
 The following files predate the git repo and were created during troubleshooting. They are kept for reference but are not part of the active configuration:
 
