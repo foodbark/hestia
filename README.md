@@ -33,7 +33,6 @@ Hestia runs a smart sleep/wake cycle:
 | `hestia-reset.log` | Terminal output from hestia-reset.ps1 captured to confrim resets. |
 | `output.txt` | Miscellaneous terminal output captured during troubleshooting. |
 | `sleepstudy-report.html` | Most recent sleepstudy report captured for troubleshooting. |
-| `settings.local.json` | Claude Code permissions config. |
 | `.gitignore` | Excludes `.claude` and `*.msi` from the repo. |
 
 The following files predate the git repo and were created during troubleshooting. They are kept for reference but are not part of the active configuration:
