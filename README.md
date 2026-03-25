@@ -1,6 +1,6 @@
 # Hestia
 
-Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves as the brain of **the Monidoor** — a touchscreen calendar, kitchen entertainment system, scrolling picture frame, and digital hearth of the home. Hestia is embedded in a door connected to an ASUS touchscreen monitor and runs as an always-on machine with a smart sleep/wake cycle.
+Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves as the brain of **The Monidoor** — a touchscreen calendar, kitchen entertainment system, scrolling picture frame, and digital hearth of the home. Hestia is embedded in a door connected to an ASUS touchscreen monitor and runs as an always-on machine with a smart sleep/wake cycle.
 
 ## Hardware
 
@@ -13,7 +13,7 @@ Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves a
 | **RAM** | 16GB |
 | **Network** | WiFi only — Intel 8265 (no RJ45) |
 | **Sleep states** | S3 (Standby) and Hibernate available |
-| **Display** | ASUS BE24ECSBT 23.8" multi-touchscreen monitor, laptop lid always closed |
+| **Display** | ASUS BE24ECSBT 23.8" multi-touchscreen monitor (laptop lid always closed) |
 
 ## What This Does
 
@@ -113,13 +113,13 @@ Scripts downloaded from outside Hestia (e.g. pulled from GitHub, created by clau
 
 ## Sleep/Wake Troubleshooting History
 
-This has been extensively debugged (generated under the ever watchful eye of Claude, and to be taken with a heavy dose of salt).
+This has been extensively debugged (some of it under the ever watchful eye of Claude, and those Cluade parts are to be taken with a heavy dose of salt).
 
 ### Background
 
-The sleep/wake cycle ran perfectly on this same hardware under Linux using systemd and a bash script (`smart-suspend.sh`) that wrote directly to the hardware RTC before suspending. Linux has direct, clean access to `/sys/class/rtc/rtc0/wakealarm` which lets you set a hardware wake alarm that survives sleep and hibernate. The full story of the Linux setup — and the odyssey through Fedora, Ubuntu, and Tiny11 that eventually landed back on Windows 10 LTSC — is documented at [foodbark.io](https://foodbark.io/posts/the-big-sleep-and-wake-cycle/).
+The sleep/wake cycle ran perfectly on this same hardware under Linux using systemd and a bash script (`smart-suspend.sh`) that wrote directly to the hardware RTC before suspending. Linux has direct, clean access to `/sys/class/rtc/rtc0/wakealarm` which lets you set a hardware wake alarm that survives sleep and hibernate. That script has sadly been lost to the ether, but the full story of the Linux setup (and the odyssey through Fedora, Ubuntu, and Tiny11 that eventually landed back on Windows 10 LTSC) is documented at [foodbark.io](https://foodbark.io/posts/the-big-sleep-and-wake-cycle/).
 
-Windows does not expose direct RTC access the same way, which is the root cause of all the complexity below.
+Windows does not expose direct RTC access the same way that linux does, which is the root cause of all the complexity below.
 
 ### Key findings:
 
@@ -135,7 +135,7 @@ Windows does not expose direct RTC access the same way, which is the root cause 
 - **Here-strings in PowerShell**: `@"` must be the last character on its line and `"@` must be alone at the very start of a line with no leading spaces. Indented here-strings inside `if`/`try` blocks cause parse errors and silent script failures. Type definitions using here-strings should be assigned at the top level of the script before any other code.
 - **`-Schedule` parameter**: `smart-sleep.ps1` takes `-Schedule weeknight` or `-Schedule weekend` to set the correct bedtime. Without this parameter the script defaults to weeknight. The weekend task previously fired at midnight which caused a day-of-week rollover bug where `$pastBedtime` was always false.
 - **Audio detection**: Active audio playback is detected via `IAudioMeterInformation::GetPeakValue()` COM interop — no external module required, works as SYSTEM, works with any output device including Bluetooth.
-- Confirmed working dates: **Feb 12, 2026** (`HestiaWakeWeekdays`), **Feb 21, 2026** (`HestiaWakeWeekend`), **Mar 6, 2026** (`HestiaWakeWeekdays`), **Mar 10, 2026** (`HestiaWakeWeekdays`).
+- Confirmed working dates: **Feb 12, 2026** (`HestiaWakeWeekdays`), **Feb 21, 2026** (`HestiaWakeWeekend`), **Mar 6, 2026** (`HestiaWakeWeekdays`), **Mar 10, 2026** (`HestiaWakeWeekdays`) **Mar 12, 2026 - ∞**.
 
 ## Logging
 
