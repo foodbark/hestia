@@ -117,7 +117,7 @@ This has been extensively debugged (some of it under the ever watchful eye of Cl
 
 ### Background
 
-The sleep/wake cycle ran perfectly on this same hardware under Linux using systemd and a bash script (`smart-suspend.sh`) that wrote directly to the hardware RTC before suspending. Linux has direct, clean access to `/sys/class/rtc/rtc0/wakealarm` which lets you set a hardware wake alarm that survives sleep and hibernate. That script has sadly been lost to the ether, but the full story of the Linux setup (and the odyssey through Fedora, Ubuntu, and Tiny11 that eventually landed back on Windows 10 LTSC) is documented at [foodbark.io](https://foodbark.io/posts/the-big-sleep-and-wake-cycle/).
+The sleep/wake cycle ran perfectly on this same hardware under Linux using systemd and a bash script (`smart-suspend.sh`) that wrote directly to the hardware RTC before suspending. The archived Linux scripts are avalible at [https://github.com/foodbark/hestia-for-linux/](https://github.com/foodbark/hestia-for-linux/).  Linux has direct, clean access to `/sys/class/rtc/rtc0/wakealarm` which lets you set a hardware wake alarm that survives sleep and hibernate. That script has sadly been lost to the ether, but the full story of the Linux setup (and the odyssey through Fedora, Ubuntu, and Tiny11 that eventually landed back on Windows 10 LTSC) is documented at [foodbark.io](https://foodbark.io/posts/the-big-sleep-and-wake-cycle/).
 
 Windows does not expose direct RTC access the same way that linux does, which is the root cause of all the complexity below.
 
