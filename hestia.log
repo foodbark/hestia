@@ -441,3 +441,87 @@
 2026-03-24 22:00:06  CPU=0.0144879007031862 Idle=1162261 AudioPeak=0 PastBedtime=True Reasons=[]
 2026-03-24 22:00:06  System inactive - going to sleep.
 2026-03-24 22:00:06  Entering hybrid sleep.
+2026-03-25 22:00:01  
+2026-03-25 22:00:01  ================================================
+2026-03-25 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-25
+2026-03-25 22:00:01    > wake up sleepyhead <
+2026-03-25 22:00:01  ================================================
+2026-03-25 22:00:01  
+2026-03-25 22:00:04  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 3/26/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-25 22:00:04  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-25 22:00:04  Schedule=weeknight Bedtime=03/25/2026 22:00:00 PastBedtime=True
+2026-03-25 22:00:06  CPU=0 Idle=1248661 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-25 22:00:06  System inactive - going to sleep.
+2026-03-25 22:00:06  Entering hybrid sleep.
+2026-03-26 22:00:01  
+2026-03-26 22:00:01  ================================================
+2026-03-26 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-26
+2026-03-26 22:00:01    > wake up sleepyhead <
+2026-03-26 22:00:01  ================================================
+2026-03-26 22:00:01  
+2026-03-26 22:00:04  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 3/27/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-26 22:00:04  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-26 22:00:04  Schedule=weeknight Bedtime=03/26/2026 22:00:00 PastBedtime=True
+2026-03-26 22:00:06  CPU=0.793273855208754 Idle=1335061 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-26 22:00:06  System inactive - going to sleep.
+2026-03-26 22:00:06  Entering hybrid sleep.
+2026-03-27 23:59:00  
+2026-03-27 23:59:00  ================================================
+2026-03-27 23:59:00    (=^.^=)  HESTIA DAILY CHECK  2026-03-27
+2026-03-27 23:59:00    > wake up sleepyhead <
+2026-03-27 23:59:00  ================================================
+2026-03-27 23:59:00  
+2026-03-27 23:59:03  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 8:59:30 AM on 3/28/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekend' scheduled task that requested waking the computer.
+2026-03-27 23:59:03  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-27 23:59:03  Schedule=weekend Bedtime=03/27/2026 23:59:00 PastBedtime=True
+2026-03-27 23:59:06  CPU=1.09910757815457 Idle=1428600 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-27 23:59:06  System inactive - going to sleep.
+2026-03-27 23:59:06  Entering hybrid sleep.
+2026-03-28 23:59:00  
+2026-03-28 23:59:00  ================================================
+2026-03-28 23:59:00    (=^.^=)  HESTIA DAILY CHECK  2026-03-28
+2026-03-28 23:59:00    > wake up sleepyhead <
+2026-03-28 23:59:00  ================================================
+2026-03-28 23:59:00  
+2026-03-28 23:59:03  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 8:59:30 AM on 3/29/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekend' scheduled task that requested waking the computer.
+2026-03-28 23:59:03  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekend' scheduled task that requested waking the computer.
+2026-03-28 23:59:03  Schedule=weekend Bedtime=03/28/2026 23:59:00 PastBedtime=True
+2026-03-28 23:59:06  CPU=1.06331396332062 Idle=1515000 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-28 23:59:06  System inactive - going to sleep.
+2026-03-28 23:59:06  Entering hybrid sleep.
+2026-03-29 22:00:01  
+2026-03-29 22:00:01  ================================================
+2026-03-29 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-29
+2026-03-29 22:00:01    > wake up sleepyhead <
+2026-03-29 22:00:01  ================================================
+2026-03-29 22:00:01  
+2026-03-29 22:00:04  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 3/30/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-29 22:00:04  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekend' scheduled task that requested waking the computer.
+2026-03-29 22:00:04  Schedule=weeknight Bedtime=03/29/2026 22:00:00 PastBedtime=True
+2026-03-29 22:00:06  CPU=1.39562319141636 Idle=1594260 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-29 22:00:06  System inactive - going to sleep.
+2026-03-29 22:00:06  Entering hybrid sleep.
+2026-03-30 22:00:01  
+2026-03-30 22:00:01  ================================================
+2026-03-30 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-30
+2026-03-30 22:00:01    > wake up sleepyhead <
+2026-03-30 22:00:01  ================================================
+2026-03-30 22:00:01  
+2026-03-30 22:00:04  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 3/31/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-30 22:00:04  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-30 22:00:04  Schedule=weeknight Bedtime=03/30/2026 22:00:00 PastBedtime=True
+2026-03-30 22:00:06  CPU=0.809757275758949 Idle=1680659 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-30 22:00:06  System inactive - going to sleep.
+2026-03-30 22:00:06  Entering hybrid sleep.
+2026-03-31 22:00:01  
+2026-03-31 22:00:01  ================================================
+2026-03-31 22:00:01    (=^.^=)  HESTIA DAILY CHECK  2026-03-31
+2026-03-31 22:00:01    > wake up sleepyhead <
+2026-03-31 22:00:01  ================================================
+2026-03-31 22:00:01  
+2026-03-31 22:00:04  Watchdog: Wake timers: Timer set by [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker) expires at 6:59:30 AM on 4/1/2026.   Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-31 22:00:04  Watchdog: Last wake: Wake History Count - 1 Wake History [0]   Wake Source Count - 1   Wake Source [0]     Type: Wake Timer     Owner: [SERVICE] \Device\HarddiskVolume3\Windows\System32\svchost.exe (SystemEventsBroker)     Owner Supplied Reason: Windows will execute 'NT TASK\HestiaWakeWeekdays' scheduled task that requested waking the computer.
+2026-03-31 22:00:04  Schedule=weeknight Bedtime=03/31/2026 22:00:00 PastBedtime=True
+2026-03-31 22:00:06  CPU=1.99351847103808 Idle=1767059 AudioPeak=0 PastBedtime=True Reasons=[]
+2026-03-31 22:00:06  System inactive - going to sleep.
+2026-03-31 22:00:06  Entering hybrid sleep.
