@@ -1,6 +1,6 @@
 # Hestia
 
-Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves as the brain of **The Monidoor** — a touchscreen calendar, kitchen entertainment system, scrolling picture frame, and digital hearth of the home. Hestia is embedded in a door connected to an ASUS touchscreen monitor and runs as an always-on machine with a smart sleep/wake cycle.
+Automation scripts for Hestia, a Lenovo ThinkPad X1 Carbon 5th Gen that serves as the brain of **The Monidoor** a touchscreen calendar, kitchen entertainment system, scrolling picture frame, and digital hearth of the home. Hestia is embedded in a door connected to an ASUS touchscreen monitor and runs as an always-on machine with a smart sleep/wake cycle.
 
 ## Hardware
 
