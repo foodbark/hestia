@@ -29,7 +29,8 @@ Hestia runs a smart sleep/wake cycle:
 | `smart-sleep.ps1` | Main sleep script. Checks activity, logs state, and puts Hestia to sleep. Loops every 15 minutes until idle. Run nightly by scheduled tasks. |
 | `wake.ps1` | Wake stub. Does nothing — exists only so the scheduled wake tasks have something to run. The act of the task firing is what wakes the machine. |
 | `hestia-reset.ps1` | Diagnostic and reset script. Gathers full system power state, restores tasks and power settings to known-good configuration. Run manually if wake behavior breaks. |
-| `hestia.log` | Terminal output from smart-sleep.ps1 captured for troubleshooting. |
+| `screensaver-toggle.ps1` | Turns the photo screensaver on/off on the interactive desktop. Run by scheduled tasks to switch between calendar mode and photo mode. |
+| `hestia.log` | Terminal output from smart-sleep.ps1 and screensaver-toggle.ps1 captured for troubleshooting. |
 | `hestia-reset.log` | Terminal output from hestia-reset.ps1 captured to confrim resets. |
 | `output.txt` | Miscellaneous terminal output captured during troubleshooting. |
 | `sleepstudy-report.html` | Most recent sleepstudy report captured for troubleshooting. |
@@ -56,6 +57,28 @@ Four tasks must exist for the sleep/wake cycle to work. The watchdog in `smart-s
 | `HestiaWakeWeekend` | 9am Sat–Sun | Runs `wake.ps1` with **Wake to run** enabled |
 
 Both sleep tasks must be created with `-ExecutionPolicy Bypass` in the powershell.exe arguments. SYSTEM has a Restricted execution policy by default and will fail with `0x80070001` without it.
+
+Two additional tasks control the screensaver (see below). Unlike the sleep/wake tasks these run as the interactive `hestia` user, not SYSTEM:
+
+| Task | Schedule | Action |
+|---|---|---|
+| `HestiaScreensaverOff` | 7am daily | Runs `screensaver-toggle.ps1 -Mode off` (calendar mode) |
+| `HestiaScreensaverOn` | 6pm daily | Runs `screensaver-toggle.ps1 -Mode on` (photos when idle) |
+
+## Screensaver / Calendar Mode
+
+Hestia doubles as a Google Calendar display, so the photo screensaver is scheduled rather than always-on:
+
+- **7am–6pm: screensaver OFF.** The calendar stays on screen for use.
+- **6pm onward: screensaver ON**, cycling personal photos after 1 minute idle, until Hestia sleeps for the night.
+
+`screensaver-toggle.ps1 -Mode on|off` sets `ScreenSaveActive` (and the 60-second `ScreenSaveTimeOut`) under `HKCU\Control Panel\Desktop`, then calls `SystemParametersInfo` so the change applies to the running desktop immediately. `-Mode off` also stops any `PhotoScreensaver.scr` already running so the calendar returns at once.
+
+Key constraints:
+
+- **Must run as the interactive `hestia` user, not SYSTEM.** The `SystemParametersInfo` broadcast only reaches the session it runs in; a SYSTEM task would update the registry but not the live desktop. The tasks use `LogonType Interactive` (run only when hestia is logged on).
+- **`StartWhenAvailable` is set** so the missed 7am "off" trigger fires on wake — on weekend mornings Hestia is still asleep at 7am and does not wake until 9am.
+- To change the windows, edit the trigger times on the two tasks (or in `hestia-reset.ps1`); to change the idle delay, edit `$timeoutSeconds` in `screensaver-toggle.ps1`.
 
 ## Power Settings
 
@@ -84,7 +107,7 @@ Run `hestia-reset.ps1` as admin. It will:
 1. Log full system diagnostics (power states, wake history, scheduled tasks, recent updates)
 2. Restore default power schemes
 3. Re-enable hibernate and wake timers
-4. Recreate all four scheduled tasks with correct arguments and triggers
+4. Recreate all scheduled tasks (four sleep/wake tasks plus the two screensaver tasks) with correct arguments and triggers
 5. Verify `smart-sleep.ps1` is the correct version (warns in log if WaitableTimer, rundll32, or missing `-Schedule` parameter detected)
 6. Set a test wake task 10 minutes out and hibernate
 

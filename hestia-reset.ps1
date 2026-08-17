@@ -191,7 +191,7 @@ $principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccou
 
 Write-Log ""
 Write-Log "--- Removing old tasks if present ---"
-foreach ($t in @("HestiaSleepWeeknights","HestiaSleepWeekend","HestiaWakeWeekdays","HestiaWakeWeekend","HestiaSetRTCWake","HestiaWakeTest")) {
+foreach ($t in @("HestiaSleepWeeknights","HestiaSleepWeekend","HestiaWakeWeekdays","HestiaWakeWeekend","HestiaSetRTCWake","HestiaWakeTest","HestiaScreensaverOff","HestiaScreensaverOn")) {
     if (Get-ScheduledTask -TaskName $t -ErrorAction SilentlyContinue) {
         Unregister-ScheduledTask -TaskName $t -Confirm:$false
         Write-Log "  Removed: $t"
@@ -227,6 +227,30 @@ Write-Log "--- Creating HestiaWakeWeekend (9am Sat-Sun) ---"
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Saturday,Sunday -At "9:00AM"
 Register-ScheduledTask -TaskName "HestiaWakeWeekend" -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Log "  Created"
+
+# -------------------------------
+# SECTION 9b: Screensaver / calendar-mode tasks
+# -------------------------------
+# These run as the interactive hestia user (not SYSTEM) so the
+# SystemParametersInfo broadcast reaches the live desktop. Screensaver is
+# OFF 7am-6pm (calendar visible) and ON 6pm onward (photos when idle).
+# StartWhenAvailable catches the missed 7am trigger on weekend mornings when
+# Hestia is still asleep until her 9am wake.
+Write-Log ""
+Write-Log "--- Creating screensaver tasks (run as hestia, interactive) ---"
+Unblock-File -Path "C:\Hestia\screensaver-toggle.ps1" -ErrorAction SilentlyContinue
+$ssPrincipal = New-ScheduledTaskPrincipal -UserId "HESTIA\hestia" -LogonType Interactive -RunLevel Limited
+$ssSettings  = New-ScheduledTaskSettingsSet -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+
+$ssOffAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File C:\Hestia\screensaver-toggle.ps1 -Mode off"
+$ssOffTrigger = New-ScheduledTaskTrigger -Daily -At "7:00AM"
+Register-ScheduledTask -TaskName "HestiaScreensaverOff" -Action $ssOffAction -Trigger $ssOffTrigger -Settings $ssSettings -Principal $ssPrincipal -Force | Out-Null
+Write-Log "  HestiaScreensaverOff created (7am daily)"
+
+$ssOnAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File C:\Hestia\screensaver-toggle.ps1 -Mode on"
+$ssOnTrigger = New-ScheduledTaskTrigger -Daily -At "6:00PM"
+Register-ScheduledTask -TaskName "HestiaScreensaverOn" -Action $ssOnAction -Trigger $ssOnTrigger -Settings $ssSettings -Principal $ssPrincipal -Force | Out-Null
+Write-Log "  HestiaScreensaverOn created (6pm daily)"
 
 # -------------------------------
 # SECTION 10: Deploy smart-sleep.ps1

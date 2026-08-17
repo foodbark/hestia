@@ -10,11 +10,12 @@ The scripts implement a **smart sleep/wake cycle**: Hestia sleeps at night (10pm
 
 ## Active vs. reference files
 
-Only three scripts are part of the live configuration:
+These scripts are part of the live configuration:
 
 - `smart-sleep.ps1` — the production sleep script. Run nightly by scheduled tasks with `-Schedule weeknight|weekend`. **This is the file to edit for sleep behavior.**
 - `hestia-reset.ps1` — diagnostic + reset. Run manually as admin when wake breaks; it recreates all scheduled tasks and power settings from scratch and is the source of truth for their correct configuration.
 - `wake.ps1` — intentionally empty stub. The scheduled wake task firing is what wakes the machine; the script does nothing and must stay that way.
+- `screensaver-toggle.ps1` — turns the photo screensaver on/off with `-Mode on|off`. Run by the `HestiaScreensaverOff` (7am) and `HestiaScreensaverOn` (6pm) tasks so Hestia shows Google Calendar during the day and cycles photos in the evening. See "Screensaver" below.
 
 Everything else is kept for reference and must **not** be treated as current:
 - `smart-sleep1.0.ps1` and `hestia-sleep-test-3-3-26*.ps1` are **old, broken** approaches (WaitableTimer / `rundll32 SetSuspendState`) retained only to document what failed. Do not copy patterns from them into the active scripts — they contain exactly the anti-patterns listed below.
@@ -39,6 +40,16 @@ The correct approach was found through extensive debugging. Changes that violate
 - **Audio** via `IAudioMeterInformation::GetPeakValue()` COM interop (peak `> 0` = playing). Chosen because it needs no external module, works as SYSTEM, and works with any output device including Bluetooth. Defaults to `0` on error so a broken check never blocks sleep.
 
 The defensive defaults are deliberate: every detector fails **toward** allowing sleep.
+
+## Screensaver (calendar vs. photo mode)
+
+Hestia doubles as a Google Calendar display, so the photo screensaver (`PhotoScreensaver.scr`, 60s) is scheduled, not always-on: **off 7am–6pm** (calendar visible), **on 6pm onward** (photos when idle) until she sleeps. `screensaver-toggle.ps1 -Mode on|off` writes `HKCU\Control Panel\Desktop` and calls `SystemParametersInfo` to apply it live.
+
+Non-obvious constraints:
+
+- **These two tasks run as the interactive `hestia` user (`LogonType Interactive`), NOT SYSTEM** — unlike every other Hestia task. `SystemParametersInfo` only affects the session it runs in, so a SYSTEM task would set the registry but not the live desktop. Keep them interactive.
+- **`StartWhenAvailable` is required on the "off" task**: on weekends Hestia is asleep at 7am (wakes 9am), so the 7am trigger is missed and must run on wake instead.
+- The interactive user here is `hestia`; changes to `HKCU` from this session (and from these tasks) target the right hive because they run as that user.
 
 ## Common operations
 
