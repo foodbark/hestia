@@ -108,6 +108,17 @@ powercfg /setdcvalueindex SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
 powercfg /setactive SCHEME_CURRENT
 ```
 
+## Sign-in / No Interaction
+
+Hestia is a kiosk: walking up to her should show the Google Calendar with no password or PIN. Two separate things cause a sign-in prompt, and both are disabled.
+
+- **Waking from sleep** (the normal every-morning path) is handled by the `CONSOLELOCK 0` power setting above. This is scripted — `hestia-reset.ps1` re-applies it after any reset.
+- **Rebooting** (e.g. after a Windows Update restarts her overnight) would otherwise land on the lock screen. Auto-logon is configured with **Sysinternals Autologon** (`https://live.sysinternals.com/Autologon64.exe`): run it, confirm Username `hestia` / Domain `HESTIA`, enter the password, and click **Enable**. It stores the password as an encrypted LSA secret (`AutoAdminLogon=1`, no plaintext `DefaultPassword` in the registry).
+
+**Auto-logon is not scriptable and `hestia-reset.ps1` does not recreate it** — it needs the password typed into the Autologon dialog. After an OS reinstall it must be redone by hand using the steps above.
+
+Tradeoff: with both disabled, anyone with physical access to Hestia is on the `hestia` desktop with no credentials. That is intended for a calendar embedded in a door.
+
 ## If Wake Stops Working
 
 Run `hestia-reset.ps1` as admin. It will:
