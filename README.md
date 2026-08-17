@@ -39,7 +39,7 @@ The following files predate the git repo and were created during troubleshooting
 
 | File | Description |
 |---|---|
-| `smart-sleep1_0.ps1` | Original sleep script before troubleshooting changes broke it. |
+| `smart-sleep1.0.ps1` | Original sleep script before troubleshooting changes broke it. |
 | `hestia-sleep-test-3-3-26.ps1` | Sets a wake timer 6 minutes out and sleeps via `SetSuspendState 0,1,0`. |
 | `hestia-sleep-test-3-3-26-1.ps1` | Sets a wake timer 10 minutes out and sleeps via `SetSuspendState 0,0,0` (S3 forced). |
 | `hestia-sleep-test-3-3-26-2.ps1` | Sets a wake timer 10 minutes out and sleeps via `SetSuspendState 0,1,0`. None of these worked — all went to hibernate regardless of parameters. |
