@@ -97,6 +97,14 @@ powercfg /setdcvalueindex SCHEME_CURRENT SUB_SLEEP 9d7815a6-7ee4-497e-8888-515a0
 powercfg /setacvalueindex SCHEME_CURRENT SUB_SLEEP HYBRIDSLEEP 1
 powercfg /setdcvalueindex SCHEME_CURRENT SUB_SLEEP HYBRIDSLEEP 1
 
+# Do NOT require a password/PIN when waking from sleep, so the calendar is
+# visible the moment someone walks up - no interaction required. CONSOLELOCK
+# is a hidden setting; -attributes unhides it so it also shows in the power UI.
+# (restoredefaultschemes resets this to 1, so hestia-reset.ps1 re-applies it.)
+powercfg -attributes SUB_NONE CONSOLELOCK -ATTRIB_HIDE
+powercfg /setacvalueindex SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+powercfg /setdcvalueindex SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+
 powercfg /setactive SCHEME_CURRENT
 ```
 

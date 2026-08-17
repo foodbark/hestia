@@ -172,6 +172,15 @@ Write-Log "--- Disabling S4 doze timeout (DC/battery) ---"
 powercfg /setdcvalueindex SCHEME_CURRENT SUB_SLEEP 9d7815a6-7ee4-497e-8888-515a05f02364 0
 Write-Log "  Done"
 
+# Hestia is a kiosk calendar display - no one should have to type a password
+# to see the calendar when she wakes. CONSOLELOCK 0 = do not require sign-in on
+# wake. restoredefaultschemes above resets this to 1, so it must be re-applied.
+Write-Log "--- Disabling require-password-on-wake (CONSOLELOCK, AC + DC) ---"
+powercfg -attributes SUB_NONE CONSOLELOCK -ATTRIB_HIDE
+powercfg /setacvalueindex SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+powercfg /setdcvalueindex SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+Write-Log "  Done"
+
 Write-Log "--- Applying power scheme ---"
 powercfg /setactive SCHEME_CURRENT
 Write-Log "  Done"
